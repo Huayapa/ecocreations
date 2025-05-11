@@ -27,7 +27,7 @@
       </section>
     </article>
     <article class="h-fit row-span-1 col-start-1 md:col-start-2 row-start-3 md:row-start-4 flex justify-start md:justify-end">
-      <button class="px-[3rem] py-[1rem] bg-[var(--dark-eco)] text-white rounded-2xl text-xl font-bold cursor-pointer hover:bg-neutral-900/80 transition">Comprar</button>
+      <a href="productos" class="px-[3rem] py-[1rem] bg-[var(--dark-eco)] text-white rounded-2xl text-xl font-bold cursor-pointer hover:bg-neutral-900/80 transition">Comprar</a>
     </article>
   </header>
   {{-- MOSTRAR CATEGORIAS --}}
@@ -56,25 +56,7 @@
     <article class="w-full grid gap-3 grid-cols-[repeat(auto-fit,_minmax(12rem,_1fr))] sm:grid-cols-[repeat(auto-fit,_minmax(18rem,_1fr))]">
       @for ($i = 0; $i < 3; $i++)
       {{-- Producto --}}
-      <section class="w-full rounded-2xl border-2 border-[var(--border-eco)] cursor-pointer hover:[&>img]:h-[12rem] sm:hover:[&>img]:h-[17rem] sm:hover:[&>img]:brightness-75 transition-all duration-700 ">
-        {{-- min-w-[12rem] sm:min-w-[18rem] --}}
-        <img src="{{ asset("img/prod1.webp") }}" alt="" class="w-full h-[10rem] sm:h-[15rem] object-cover object-top bg-[var(--green-eco)]/50 rounded-t-2xl transition-all duration-700">
-        <article class="p-3">
-          <h3 class="text-lg">Cepillo de bambú</h3>
-          <span>Cantidad: 5</span>
-          <section class="flex justify-between items-end gap-2">
-            <p class="text-xl font-bold flex gap-2 flex-wrap">
-              <span class="font-sans">S/50.00</span>
-              <del class="font-sans text-[var(--green-eco)]">S/49.00</del>
-            </p>
-            <button class="p-[1rem] bg-[var(--green-eco)] rounded-xl cursor-pointer hover:opacity-80">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512">
-                <path class="fill-white" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/>
-              </svg>
-            </button>
-          </section>
-        </article>
-      </section>
+      <x-card/>
       @endfor
     </article>
   </section>
@@ -183,7 +165,7 @@
   <section class="w-full relative min-h-[30rem] flex flex-col justify-center items-center">
     <img class="absolute top-0 -z-10 w-full min-h-[30rem] object-cover" src="{{ asset("img/fondofinalinicio.png") }}" alt="">
     <h2 class="text-4xl max-w-[30rem] text-center text-white">Haz de lo que natural tu estilo de vida</h2>
-    <button class="mt-[1rem] py-[1rem] px-[2rem] bg-[var(--dark-eco)] rounded-2xl text-xl font-bold text-white cursor-pointer hover:brightness-50 transition">Explorar tienda</button>
+    <a href="productos" class="mt-[1rem] py-[1rem] px-[2rem] bg-[var(--dark-eco)] rounded-2xl text-xl font-bold text-white cursor-pointer hover:brightness-50 transition">Explorar tienda</a>
   </section>
   {{-- ESTILOS --}}
   <style>

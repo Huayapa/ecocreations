@@ -5,8 +5,8 @@
             <div class="bg-[var(--green-eco)] h-[60px] lg:h-[80px] w-[0.2rem]"></div>
         </div>
         <div class=" navtext-eco items-center hidden lg:flex">
-            <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="#">Inicio</a>
-            <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="#">Productos</a>
+            <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="/">Inicio</a>
+            <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="productos">Productos</a>
             <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="#">Contacto</a>
             <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="#">Nosotros</a>
         </div>

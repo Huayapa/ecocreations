@@ -112,7 +112,7 @@ body {
     }
 }
 /* CLASES */
-.animationnav {
+.animationnav, .animationfilter {
     animation: moveLeft 0.5s ease-in-out;
     animation-fill-mode: forwards;
 }
