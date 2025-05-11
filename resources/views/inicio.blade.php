@@ -1,13 +1,14 @@
 @extends("layouts.ecocreations")
 @section("titulo", "Eco Creations")
 @section("content")
-  <section 
-  class="w-full fondo-inicio min-h-[34rem] max-h-[34rem] bg-no-repeat bg-center bg-cover px-[10vw] grid grid-rows-5 grid-cols-2"
+  {{-- INICIO DE LA PAGINA INICIO --}}
+  <header 
+  class="w-full fondo-inicio h-[34rem] md:h-[34rem] bg-no-repeat bg-center bg-cover px-[4vw] md:px-[10vw] flex flex-col justify-center gap-3 md:grid grid-rows-[10rem_1fr_10rem] md:grid-rows-5 grid-cols-1 md:grid-cols-2"
   >
-    <article class="flex flex-col gap-2 row-span-2 col-start-1 row-start-3">
-      <h1 class="text-5xl font-bold text-[var(--white-eco)]">ECOCREATIONS</h1>
-      <h2 class="text-2xl text-[var(--white-eco)] max-w-[26rem]">Vive verde, vive mejor. Descubre productos ecológicos que cuidan de ti y del planeta.</h2>
-      <section class="flex gap-2">
+    <article class="flex flex-col justify-center items-start gap-2  md:row-start-3 w-full mt-[2rem]">
+      <h1 class="font-bold text-[var(--white-eco)] break-all md:break-normal title">ECOCREATIONS</h1>
+      <h2 class="text-[var(--white-eco)] max-w-[30rem] subtextTitle">Vive verde, vive mejor. Descubre productos ecológicos que cuidan de ti y del planeta.</h2>
+      <section class="flex gap-2 flex-wrap">
         <a href="#" class="border-2 border-[var(--border-eco)] block p-[0.6rem] px-[0.8rem] w-fit bg-white rounded-lg hover:bg-white/80 transition h-fit">
           <svg xmlns="http://www.w3.org/2000/svg" width="26" viewBox="0 0 448 512">
             <path d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z"/>
@@ -25,10 +26,166 @@
         </a>
       </section>
     </article>
-    <article class=" row-span-1 col-start-2 row-start-4 flex justify-end">
+    <article class="h-fit row-span-1 col-start-1 md:col-start-2 row-start-3 md:row-start-4 flex justify-start md:justify-end">
       <button class="px-[3rem] py-[1rem] bg-[var(--dark-eco)] text-white rounded-2xl text-xl font-bold cursor-pointer hover:bg-neutral-900/80 transition">Comprar</button>
     </article>
+  </header>
+  {{-- MOSTRAR CATEGORIAS --}}
+  <section class="w-full min-h-[8rem] py-4 bg-[var(--dark-eco)] text-white px-[4vw] md:px-[10vw] flex flex-col sm:flex-row justify-stretch items-center">
+    <a href="#" class="relative w-full text-center bg-[var(--dark-eco)] h-[6rem] flex items-center justify-center hover:opacity-90 transition">
+      <img class="absolute w-full h-[6rem] object-cover z-10 opacity-60" src="{{ asset("img/categorias/decoracion.jpg") }}" alt="">
+      <span class="z-20">Decoración reciclados</span>
+    </a>
+    <a href="#" class="relative w-full text-center bg-[var(--dark-eco)] h-[6rem] flex items-center justify-center hover:opacity-90 transition">
+      <img class="absolute w-full h-[6rem] object-cover z-10 opacity-60" src="{{ asset("img/categorias/higiene.jpg") }}" alt="">
+      <span class="z-20">Higiene y cuidado corporal</span>
+    </a>
+    <a href="#" class="relative w-full text-center bg-[var(--dark-eco)] h-[6rem] flex items-center justify-center hover:opacity-90 transition">
+      <img class="absolute w-full h-[6rem] object-cover z-10 opacity-60" src="{{ asset("img/categorias/utensilios.jpg") }}" alt="">
+      <span class="z-20">Utensilios reutilizables</span>
+    </a>
+    <a href="#" class="relative w-full text-center bg-[var(--dark-eco)] h-[6rem] flex items-center justify-center hover:opacity-90 transition">
+      <img class="absolute w-full h-[6rem] object-cover z-10 opacity-60" src="{{ asset("img/categorias/cosmeticacorporal.webp") }}" alt="">
+      <span class="z-20">Cosmética natural</span>
+    </a>
   </section>
+  {{-- MOSTRAR PRODUCTOS DESTACADOS --}}
+  <section class="w-full px-[4vw] md:px-[10vw] py-[2rem]">
+    <h2 class="subTitle font-bold py-3">Productos destacados</h2>
+    {{-- LISTA DE CARDS --}}
+    <article class="w-full grid gap-3 grid-cols-[repeat(auto-fit,_minmax(12rem,_1fr))] sm:grid-cols-[repeat(auto-fit,_minmax(18rem,_1fr))]">
+      @for ($i = 0; $i < 3; $i++)
+      {{-- Producto --}}
+      <section class="w-full rounded-2xl border-2 border-[var(--border-eco)] cursor-pointer hover:[&>img]:h-[12rem] sm:hover:[&>img]:h-[17rem] sm:hover:[&>img]:brightness-75 transition-all duration-700 ">
+        {{-- min-w-[12rem] sm:min-w-[18rem] --}}
+        <img src="{{ asset("img/prod1.webp") }}" alt="" class="w-full h-[10rem] sm:h-[15rem] object-cover object-top bg-[var(--green-eco)]/50 rounded-t-2xl transition-all duration-700">
+        <article class="p-3">
+          <h3 class="text-lg">Cepillo de bambú</h3>
+          <span>Cantidad: 5</span>
+          <section class="flex justify-between items-end gap-2">
+            <p class="text-xl font-bold flex gap-2 flex-wrap">
+              <span class="font-sans">S/50.00</span>
+              <del class="font-sans text-[var(--green-eco)]">S/49.00</del>
+            </p>
+            <button class="p-[1rem] bg-[var(--green-eco)] rounded-xl cursor-pointer hover:opacity-80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512">
+                <path class="fill-white" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/>
+              </svg>
+            </button>
+          </section>
+        </article>
+      </section>
+      @endfor
+    </article>
+  </section>
+  {{-- MOSTRAR BENEFICIOS --}}
+  <section class="w-full px-[4vw] md:px-[10vw] py-[2rem]">
+    <h2 class="subTitle font-bold py-3">Beneficios</h2>
+    <article class="flex justify-between gap-2 w-full">
+      {{-- Lista beneficios --}}
+      <section class="grid gap-2 grid-cols-[repeat(auto-fit,_minmax(18rem,_1fr))] sm:grid-cols-[repeat(auto-fit,_minmax(24rem,_1fr))] w-full h-[30rem] overflow-hidden overflow-y-auto maskimage">
+        {{-- Lista --}}
+        <article class="rounded-lg border-2 border-[var(--border-eco)] flex max-w-[50rem] h-fit w-full">
+          <img src="{{ asset("img/beneficios/ben1.jpg") }}" alt="" class="w-[5rem] h-[8rem] object-cover rounded-s-lg sm:w-[8rem] sm:h-[8rem]">
+          <section class="relative p-[0.8rem] flex items-center">
+            <p class="text">Todos nuestros productos son seleccionados por su bajo impacto ambiental y procesos sostenibles.</p>
+            <div class="absolute w-[2rem] h-[2rem] rounded-full bg-white top-[3rem]  left-[-20px]"></div>
+          </section>
+        </article>
+        <article class="rounded-lg border-2 border-[var(--border-eco)] flex max-w-[50rem] h-fit w-full">
+          <img src="{{ asset("img/beneficios/ben2.webp") }}" alt="" class="w-[5rem] h-[8rem] object-cover rounded-s-lg sm:w-[8rem] sm:h-[8rem]">
+          <section class="relative p-[0.8rem] flex items-center">
+            <p class="text">Trabajamos con marcas y emprendedores que promueven prácticas éticas y comercio justo.</p>
+            <div class="absolute w-[2rem] h-[2rem] rounded-full bg-white top-[3rem]  left-[-20px]"></div>
+          </section>
+        </article>
+        <article class="rounded-lg border-2 border-[var(--border-eco)] flex max-w-[50rem] h-fit w-full">
+          <img src="{{ asset("img/beneficios/ben3.jpg") }}" alt="" class="w-[5rem] h-[8rem] object-cover rounded-s-lg sm:w-[8rem] sm:h-[8rem]">
+          <section class="relative p-[0.8rem] flex items-center">
+            <p class="text">Usamos empaques reciclables, compostables o reutilizables. Cero plásticos innecesarios.</p>
+            <div class="absolute w-[2rem] h-[2rem] rounded-full bg-white top-[3rem]  left-[-20px]"></div>
+          </section>
+        </article>
+        <article class="rounded-lg border-2 border-[var(--border-eco)] flex max-w-[50rem] h-fit w-full">
+          <img src="{{ asset("img/beneficios/ben4.jpg") }}" alt="" class="w-[5rem] h-[8rem] object-cover rounded-s-lg sm:w-[8rem] sm:h-[8rem]">
+          <section class="relative p-[0.8rem] flex items-center">
+            <p class="text">Nuestros productos cuentan con sellos como USDA Organic, Ecocert, FSC, entre otros (según sea el caso).</p>
+            <div class="absolute w-[2rem] h-[2rem] rounded-full bg-white top-[3rem]  left-[-20px]"></div>
+          </section>
+        </article>
+        <article class="rounded-lg border-2 border-[var(--border-eco)] flex max-w-[50rem] h-fit w-full">
+          <img src="{{ asset("img/beneficios/ben5.jpg") }}" alt="" class="w-[5rem] h-[8rem] object-cover rounded-s-lg sm:w-[8rem] sm:h-[8rem]">
+          <section class="relative p-[0.8rem] flex items-center">
+            <p class="text">Garantizamos que nuestros artículos están libres de químicos dañinos para tu salud y el medio ambiente.</p>
+            <div class="absolute w-[2rem] h-[2rem] rounded-full bg-white top-[3rem]  left-[-20px]"></div>
+          </section>
+        </article>
+        <article class="rounded-lg border-2 border-[var(--border-eco)] flex max-w-[50rem] h-fit w-full">
+          <img src="{{ asset("img/beneficios/ben6.jpg") }}" alt="" class="w-[5rem] h-[8rem] object-cover rounded-s-lg sm:w-[8rem] sm:h-[8rem]">
+          <section class="relative p-[0.8rem] flex items-center">
+            <p class="text">Te mostramos de dónde viene cada producto, qué ingredientes contiene y cómo ha sido fabricado.</p>
+            <div class="absolute w-[2rem] h-[2rem] rounded-full bg-white top-[3rem]  left-[-20px]"></div>
+          </section>
+        </article>
+
+      </section>
+      <img src="{{ asset("img/beneficios/benimg.png") }}" alt="" class="hidden lg:block max-w-[24rem] w-full min-w-[10rem] h-[30rem] object-cover">
+    </article>
+  </section>
+  {{-- MOSTRAR SEGURIDAD --}}
+  <section class="w-full px-[4vw] md:px-[10vw] py-[2rem] flex gap-2 justify-center md:justify-between items-center flex-wrap md:flex-nowrap">
+    <img class="maskimage2 w-[400px] h-[400px] md:w-[200px] md:h-[300px] lg:w-[360px] lg:h-[500px] object-cover object-top" src="{{ asset("img/peoplehome.png") }}" alt="">
+    <article class="flex flex-col items-center justify-center w-full">
+      <h2 class="text-2xl font-bold mb-6 w-full text-center md:text-start">Compra segura y garantizada</h2>
+      {{-- LISTA --}}
+      <section class="w-full flex items-center gap-1 flex-wrap justify-center md:justify-between">
+        {{-- CARD --}}
+        <article class="max-w-[12rem] lg:max-w-[13rem] w-full min-w-[9rem] h-[14rem] flex flex-col justify-center items-center text-center border-2 border-[var(--border-eco)] p-2 rounded-xl">
+          <div class="bg-gradient-to-b from-[#185B22] to-[#229333] inline-block p-2 rounded-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" viewBox="0 0 576 512">
+              <path class="fill-white" d="M64 64C28.7 64 0 92.7 0 128L0 384c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-256c0-35.3-28.7-64-64-64L64 64zm64 320l-64 0 0-64c35.3 0 64 28.7 64 64zM64 192l0-64 64 0c0 35.3-28.7 64-64 64zM448 384c0-35.3 28.7-64 64-64l0 64-64 0zm64-192c-35.3 0-64-28.7-64-64l64 0 0 64zM288 160a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold">Pago protegido</h3>
+          <p>Tus datos están 100% seguros. Aceptamos métodos de pago confiables con cifrado SSL.</p>
+        </article>
+        <article class="max-w-[12rem] lg:max-w-[13rem] w-full min-w-[9rem] h-[14rem] flex flex-col justify-center items-center text-center border-2 border-[var(--border-eco)] p-2 rounded-xl">
+          <div class="bg-gradient-to-b from-[#185B22] to-[#229333] inline-block p-2 rounded-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" viewBox="0 0 576 512">
+              <path class="fill-white" d="M64 64C28.7 64 0 92.7 0 128L0 384c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-256c0-35.3-28.7-64-64-64L64 64zm64 320l-64 0 0-64c35.3 0 64 28.7 64 64zM64 192l0-64 64 0c0 35.3-28.7 64-64 64zM448 384c0-35.3 28.7-64 64-64l0 64-64 0zm64-192c-35.3 0-64-28.7-64-64l64 0 0 64zM288 160a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold">Devoluciones sin complicaciones</h3>
+          <p>Puedes devolver tu producto en un plazo de 15 días.</p>
+        </article>
+        <article class="max-w-[12rem] lg:max-w-[13rem] w-full min-w-[9rem] h-[14rem] flex flex-col justify-center items-center text-center border-2 border-[var(--border-eco)] p-2 rounded-xl">
+          <div class="bg-gradient-to-b from-[#185B22] to-[#229333] inline-block p-2 rounded-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" viewBox="0 0 576 512">
+              <path class="fill-white" d="M64 64C28.7 64 0 92.7 0 128L0 384c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-256c0-35.3-28.7-64-64-64L64 64zm64 320l-64 0 0-64c35.3 0 64 28.7 64 64zM64 192l0-64 64 0c0 35.3-28.7 64-64 64zM448 384c0-35.3 28.7-64 64-64l0 64-64 0zm64-192c-35.3 0-64-28.7-64-64l64 0 0 64zM288 160a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold">Satisfacción ecológica</h3>
+          <p>Cambiamos o reembolsamos el producto si no cumple tu calidad.</p>
+        </article>
+        <article class="max-w-[12rem] lg:max-w-[13rem] w-full min-w-[9rem] h-[14rem] flex flex-col justify-center items-center text-center border-2 border-[var(--border-eco)] p-2 rounded-xl">
+          <div class="bg-gradient-to-b from-[#185B22] to-[#229333] inline-block p-2 rounded-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" viewBox="0 0 576 512">
+              <path class="fill-white" d="M64 64C28.7 64 0 92.7 0 128L0 384c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-256c0-35.3-28.7-64-64-64L64 64zm64 320l-64 0 0-64c35.3 0 64 28.7 64 64zM64 192l0-64 64 0c0 35.3-28.7 64-64 64zM448 384c0-35.3 28.7-64 64-64l0 64-64 0zm64-192c-35.3 0-64-28.7-64-64l64 0 0 64zM288 160a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold">Productos certificados</h3>
+          <p>Trabajamos con: USDA Organic, Ecocert, FSC, entre otros.</p>
+        </article>
+      </section>
+    </article>
+  </section>
+  {{-- MOSTRAR ESLOGAN --}}
+  <section class="w-full relative min-h-[30rem] flex flex-col justify-center items-center">
+    <img class="absolute top-0 -z-10 w-full min-h-[30rem] object-cover" src="{{ asset("img/fondofinalinicio.png") }}" alt="">
+    <h2 class="text-4xl max-w-[30rem] text-center text-white">Haz de lo que natural tu estilo de vida</h2>
+    <button class="mt-[1rem] py-[1rem] px-[2rem] bg-[var(--dark-eco)] rounded-2xl text-xl font-bold text-white cursor-pointer hover:brightness-50 transition">Explorar tienda</button>
+  </section>
+  {{-- ESTILOS --}}
   <style>
     .fondo-inicio {
       background-image: url('{{ asset('img/fondoinicio.png') }}')

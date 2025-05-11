@@ -1,5 +1,4 @@
-
-<nav class="font-nunito bg-[var(--dark-eco)] flex items-center justify-between w-full fixed calcnav max-w-[calc(100%-8vw)] mx-[4vw] lg:mx-[10vw] lg:max-w-[calc(100%-20vw)] top-[3rem] rounded-[1.5rem] text-white px-[1rem] py-[0.6rem] gap-[1rem] z-40">
+<nav class="animationnav font-nunito bg-[var(--dark-eco)] flex items-center justify-between w-full fixed calcnav max-w-[calc(100%-8vw)] mx-[4vw] lg:mx-[10vw] lg:max-w-[calc(100%-20vw)] top-[3rem] rounded-[1.5rem] text-white px-[1rem] py-[0.6rem] gap-[1rem] z-40">
     <section class="flex items-center justify-start">
         <div class="flex items-center gap-[0.2rem]">
             <img src="{{ asset('img/logowhite.png') }}" alt="Logo" class="w-full min-w-[40px] h-[40px] lg:h-[60px] object-cover object-left" />

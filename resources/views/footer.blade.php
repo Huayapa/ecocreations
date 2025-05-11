@@ -1,4 +1,4 @@
-<footer class="font-nunito bg-[var(--dark-eco)] min-h-[6rem] w-full mt-[4rem] text-white flex items-start justify-between md:items-center p-4 relative pb-[3rem] md:pb[2rem] flex-col md:flex-row gap-2 z-1">
+<footer class="font-nunito bg-[var(--dark-eco)] min-h-[6rem] w-full text-white flex items-start justify-between md:items-center p-4 relative pb-[3rem] md:pb[2rem] flex-col md:flex-row gap-2 z-1">
   {{-- Logo --}}
   <section class="flex flex-col gap-4 md:flex-row items-start md:items-center">
     {{-- Logo --}}

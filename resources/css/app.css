@@ -25,6 +25,7 @@
     --font-ttdrugs: "TTdrugs", sans-serif;
 }
 
+/* VARIABLES */
 
 :root {
     --green-eco: #508B46;
@@ -32,15 +33,27 @@
     --white-eco: #ffffff;
     --dark: #000;
     --border-eco: #F0F0F0;
-    --parrafo-eco: clamp(0.8rem, 1.5vw, 1.2rem);
 }
-
+/* TAMAÑOS DE TEXTO RELATIVC */
 .parrafo-eco {
-    font-size: var(--parrafo-eco);
+    font-size: clamp(0.8rem, 1.5vw, 1.2rem);
 }
 .navtext-eco {
     font-size: clamp(0.8rem, 1.5vw, 1.2rem);
 }
+.title {
+    font-size: clamp(1.6rem, 5vw, 3rem);
+}
+.subtextTitle {
+    font-size: clamp(1rem, 2vw, 1.6rem);
+}
+.subTitle {
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+}
+.text {
+    font-size: clamp(0.8rem, 3vw, 1rem);
+}
+/* RESETEO DE CONTENIDO */
 html * {
     box-sizing: border-box;
 }
@@ -48,7 +61,11 @@ html * {
 body {
     overflow-x: hidden;
 }
+/* p {
+    font-family: "nunito";
+} */
 
+/* ANIMACIONES */
 @keyframes moveLeft {
     0% {
         transform: translateX(100%);
@@ -69,7 +86,32 @@ body {
     }
     
 }
-
+@keyframes navAnimation {
+    0% {
+        scale: 0;
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    50% {
+        scale: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+@keyframes navAnimationmove {
+    0% {
+        transform: translateY(-10%);
+    }
+    50% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(-10%);
+    }
+}
+/* CLASES */
 .animationnav {
     animation: moveLeft 0.5s ease-in-out;
     animation-fill-mode: forwards;
@@ -80,6 +122,17 @@ body {
     animation-fill-mode: forwards;
 }
 
-p {
-    font-family: "nunito";
+.animationnav {
+    animation: navAnimation 0.5s ease-in-out, navAnimationmove 2s ease infinite;
+    animation-fill-mode: forwards;
+}
+
+
+
+/* MASCARA ABAJO */
+.maskimage {
+    mask-image: linear-gradient(black 80%, transparent);
+}
+.maskimage2 {
+    mask-image: linear-gradient(black 60%, transparent);
 }
