@@ -51,8 +51,14 @@
           <span>S/180.00</span>
         </section>
       </article>
-      <button class="my-[1rem] w-full py-[0.6rem] text-2xl border-2 border-[var(--green-eco)] rounded-lg cursor-pointer hover:bg-white hover:text-black transition">Comprar</button>
+      <button id="btn-boleta" class="block my-[1rem] w-full py-[0.6rem] text-2xl border-2 border-[var(--green-eco)] rounded-lg cursor-pointer hover:bg-white hover:text-black transition">Comprar</button>
     </section>
   </article>
 </section>
+<script>
+  const $btnboleta = document.getElementById("btn-boleta");
+  $btnboleta.addEventListener("click", e => {
+    window.location.href = "boleta";
+  })
+</script>
 @endsection

@@ -15,5 +15,9 @@ Route::get('carrito', function () {
     return view('carrito');
 })->name('carrito');
 
+Route::get('boleta', function () {
+    return view('boleta');
+})->name('boleta');
+
 Route::get('detalleproducto/{id}', [ProductoController::class, 'mostrar'])->name('detalleproducto');
 
