@@ -1,4 +1,4 @@
-<section class="overflow-y-auto max-h-[20rem] min-h-[20rem]">
+<section class="overflow-y-auto max-h-[17rem] min-h-[17rem]">
   {{-- Producto del carrito --}}
   @if ($cantidadcart <= 0)
     <div class="w-full text-center h-[10rem] flex justify-center items-center" >No hay productos</div>
@@ -31,4 +31,5 @@
   <h5>Total</h5>
   <span>S/500</span>
 </section>
-<button class="w-full py-[0.5rem] bg-[var(--dark-eco)] text-white rounded-xl cursor-pointer mt-[1rem]">Tramitar Pedido</button>
+<a href="{{ route("carrito") }}" class="w-full text-center block py-[0.5rem] bg-[var(--dark-eco)] text-white rounded-xl cursor-pointer mt-[1rem]">Ver carrito</a>
+<a href="#" class="w-full py-[0.5rem] text-center block bg-[var(--dark-eco)] text-white rounded-xl cursor-pointer mt-[0.5rem]">Tramitar Pedido</a>

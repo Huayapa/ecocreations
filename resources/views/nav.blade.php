@@ -5,8 +5,8 @@
             <div class="bg-[var(--green-eco)] h-[60px] lg:h-[80px] w-[0.2rem]"></div>
         </div>
         <div class=" navtext-eco items-center hidden lg:flex">
-            <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="/">Inicio</a>
-            <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="productos">Productos</a>
+            <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="{{ route("inicio") }}">Inicio</a>
+            <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="{{ route("productos") }}">Productos</a>
             <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="#">Contacto</a>
             <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="#">Nosotros</a>
         </div>
@@ -25,8 +25,8 @@
     {{-- Barra de navegacion movil --}}
     <nav id="nav-menu" class="border-2 border-[var(--border-eco)] z-10 bg-white hidden lg:hidden w-[10rem] sm:w-[15rem] p-[1rem] rounded-e-lg rounded-s-3xl absolute top-[109px] right-1" >
         <section class="flex flex-col w-full text-[var(--dark-eco)]">
-            <a class="px-[1rem] py-[0.5rem] hover:underline hover:text-[var(--green-eco)] transition text-end" href="#">Inicio</a>
-            <a class="px-[1rem] py-[0.5rem] hover:underline hover:text-[var(--green-eco)] transition text-end" href="#">Productos</a>
+            <a class="px-[1rem] py-[0.5rem] hover:underline hover:text-[var(--green-eco)] transition text-end" href="{{ route("inicio") }}">Inicio</a>
+            <a class="px-[1rem] py-[0.5rem] hover:underline hover:text-[var(--green-eco)] transition text-end" href="{{ route("productos") }}">Productos</a>
             <a class="px-[1rem] py-[0.5rem] hover:underline hover:text-[var(--green-eco)] transition text-end" href="#">Contacto</a>
             <a class="px-[1rem] py-[0.5rem] hover:underline hover:text-[var(--green-eco)] transition text-end" href="#">Nosotros</a>
         </section>

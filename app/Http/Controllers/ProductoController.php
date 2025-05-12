@@ -17,7 +17,8 @@ class ProductoController extends Controller
             'precio' => 0.00
         ]; //aqui devolvera una array con el producto
         if($id != $producto->id) {
-            return redirect("/")->with('error', 'Producto no encontrado.');
+            session()->flash('error', 'Producto no encontrado.');
+            return redirect("/");
         }
 
         return view("detalleproducto", compact("producto"));

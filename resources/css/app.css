@@ -109,13 +109,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 @keyframes navAnimationmove {
     0% {
-        transform: translateY(-10%);
+        transform: translateY(-5%);
     }
     50% {
         transform: translateY(0%);
     }
     100% {
-        transform: translateY(-10%);
+        transform: translateY(-5%);
     }
 }
 @keyframes deletetop {
