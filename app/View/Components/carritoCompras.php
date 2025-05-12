@@ -8,10 +8,10 @@ use Illuminate\Contracts\View\View;
 
 class carritoCompras extends Component
 {
-    public int| null $cantidadcart;
+    public int | null $cantidadcart;
     public function __construct()
     {
-        $this->cantidadcart = session('carrito') ? count(session('carrito')) : 1;
+        $this->cantidadcart = count(session('carrito', ["1", "2"]));
     }
 
     public function render(): View|Closure|string

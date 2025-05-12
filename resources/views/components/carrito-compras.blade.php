@@ -1,6 +1,6 @@
 <section class="overflow-y-auto max-h-[17rem] min-h-[17rem]">
   {{-- Producto del carrito --}}
-  @if (!$cantidadcart && $cantidadcart <= 0)
+  @if ($cantidadcart <= 0)
     <div class="w-full text-center h-[10rem] flex justify-center items-center" >No hay productos</div>
   @else
     @for ($i = 0; $i < $cantidadcart; $i++)
