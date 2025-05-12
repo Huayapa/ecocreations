@@ -9,7 +9,7 @@ use Illuminate\Contracts\View\View;
 class carritoCompras extends Component
 {
     public int $cantidadcart;
-    public function __construct()
+    public function mount()
     {
         $this->cantidadcart = count(session('carrito', ["1", "2"]));
     }
