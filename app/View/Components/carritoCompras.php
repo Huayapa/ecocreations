@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View;
 
 class carritoCompras extends Component
 {
-    public int $cantidadcart;
+    public ?int $cantidadcart = 2;
     public function mount()
     {
         $this->cantidadcart = count(session('carrito', ["1", "2"]));
