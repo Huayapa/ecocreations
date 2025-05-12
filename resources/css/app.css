@@ -65,6 +65,13 @@ body {
     font-family: "nunito";
 } */
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    outline: none; 
+}
+
 /* ANIMACIONES */
 @keyframes moveLeft {
     0% {
@@ -111,9 +118,36 @@ body {
         transform: translateY(-10%);
     }
 }
+@keyframes deletetop {
+    0% {
+        opacity: 1;
+        transform: translateY(-30%);
+        visibility: visible;
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(100%);
+        visibility: visible;
+    }
+    80% {
+        opacity: 1;
+        transform: translateY(100%);
+        visibility: visible;
+    }
+    100% {
+        transform: translateY(-30%);
+        opacity: 0;
+        visibility: hidden;
+    }
+}
 /* CLASES */
 .animationnav, .animationfilter {
     animation: moveLeft 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.delete-animation {
+    animation: deletetop 2.5s ease-in;
     animation-fill-mode: forwards;
 }
 
