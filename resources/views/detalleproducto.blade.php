@@ -1,17 +1,17 @@
 @extends("layouts.ecocreations")
 @section("titulo", $producto->nombre )
 @section("content")
-<section class="w-full px-[4vw] md:px-[14vw] py-[10rem]  sm:py-[12rem] min-h-dvh flex justify-center items-center">
+<section data-idprod="{{$producto->idProducto}}" class="w-full px-[4vw] md:px-[14vw] py-[10rem]  sm:py-[12rem] min-h-dvh flex justify-center items-center">
   <article class="w-full h-full bg-[var(--dark-eco)] p-[1rem] lg:p-[2rem] rounded-2xl flex flex-wrap lg:flex-nowrap gap-[0.5rem] lg:gap-[1.5rem]">
-    <img src="{{asset("img/prod1.webp")}}" alt="" class="bg-white h-[20rem] lg:h-full w-full max-w-[100%] lg:max-w-[21rem] object-cover object-top rounded-2xl">
+    <img src="data:image/jpeg;base64,{{ $producto->imagen_base64}}" alt="" class="bg-white h-[20rem] lg:h-full w-full max-w-[100%] lg:max-w-[21rem] object-cover object-top rounded-2xl">
     <section class="w-full text-white flex flex-col justify-between">
       <h1 class="text-3xl lg:text-4xl ">{{ $producto->nombre }}</h1>
-      <p class="text-md lg:text-xl my-[1.2rem] sm:my-[0.5rem] h-[11rem] overflow-auto">
+      <p class="text-md lg:text-xl my-[1.2rem] sm:my-[0.5rem] max-h-[12rem] overflow-auto">
         {{ $producto->descripcion }}
       </p>
       <div class="flex items-center gap-1">
         <h2 class="text-lg">Cantidad Disponible</h2>
-        <div class="w-[3rem] h-[3rem] text-2xl bg-white text-[var(--dark-eco)] flex items-center justify-center rounded-lg">10</div>
+        <div class="w-[3rem] h-[3rem] text-2xl bg-white text-[var(--dark-eco)] flex items-center justify-center rounded-lg">{{$producto->stock}}</div>
       </div>
       <div class="flex gap-0.5">
         <button class="w-[3rem] h-[3rem] bg-white flex items-center justify-center rounded-s-xl cursor-pointer hover:opacity-80 transition">
@@ -26,8 +26,9 @@
           </svg>
         </button>
       </div>
-      <div class="w-full flex mt-[2rem] justify-center sm:justify-end">
-        <button onclick="addprod(1)" class=" border-2 border-[var(--green-eco)] rounded-lg py-[0.8rem] px-[2rem] text-xl cursor-pointer w-full sm:w-auto hover:bg-white hover:text-[var(--dark-eco)] transition">Añadir al carrito</button>
+      <div class="w-full flex mt-[2rem] items-center flex-wrap justify-center sm:justify-between gap-3 sm:flex-nowrap">
+        <div class="text-3xl">S/{{ $producto->precio }}</div>
+        <button onclick="addprod({{$producto->idProducto}})" class=" border-2 border-[var(--green-eco)] rounded-lg py-[0.8rem] px-[2rem] text-xl cursor-pointer w-full sm:w-auto hover:bg-white hover:text-[var(--dark-eco)] transition">Añadir al carrito</button>
       </div>
     </section>
   </article>

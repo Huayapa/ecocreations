@@ -44,32 +44,21 @@
   </header>
   {{-- MOSTRAR CATEGORIAS --}}
   <section class="w-full min-h-[8rem] py-4 bg-[var(--dark-eco)] text-white px-[4vw] md:px-[10vw] flex flex-col sm:flex-row justify-stretch items-center">
+    @foreach ($categorias as $categoria)
     <a href="#" class="relative w-full text-center bg-[var(--dark-eco)] h-[6rem] flex items-center justify-center hover:opacity-90 transition">
-      <img class="absolute w-full h-[6rem] object-cover z-10 opacity-60" src="{{ asset("img/categorias/decoracion.jpg") }}" alt="">
-      <span class="z-20">Decoración reciclados</span>
+      <img class="absolute w-full h-[6rem] object-cover z-10 opacity-60" src="data:image/jpeg;base64,{{ $categoria->imagen_base64}}" alt="">
+      <span class="z-20">{{$categoria->nombre}}</span>
     </a>
-    <a href="#" class="relative w-full text-center bg-[var(--dark-eco)] h-[6rem] flex items-center justify-center hover:opacity-90 transition">
-      <img class="absolute w-full h-[6rem] object-cover z-10 opacity-60" src="{{ asset("img/categorias/higiene.jpg") }}" alt="">
-      <span class="z-20">Higiene y cuidado corporal</span>
-    </a>
-    <a href="#" class="relative w-full text-center bg-[var(--dark-eco)] h-[6rem] flex items-center justify-center hover:opacity-90 transition">
-      <img class="absolute w-full h-[6rem] object-cover z-10 opacity-60" src="{{ asset("img/categorias/utensilios.jpg") }}" alt="">
-      <span class="z-20">Utensilios reutilizables</span>
-    </a>
-    <a href="#" class="relative w-full text-center bg-[var(--dark-eco)] h-[6rem] flex items-center justify-center hover:opacity-90 transition">
-      <img class="absolute w-full h-[6rem] object-cover z-10 opacity-60" src="{{ asset("img/categorias/cosmeticacorporal.webp") }}" alt="">
-      <span class="z-20">Cosmética natural</span>
-    </a>
+    @endforeach
   </section>
   {{-- MOSTRAR PRODUCTOS DESTACADOS --}}
   <section class="w-full px-[4vw] md:px-[10vw] py-[2rem]">
     <h2 class="subTitle font-bold py-3">Productos destacados</h2>
     {{-- LISTA DE CARDS --}}
     <article class="w-full grid gap-3 grid-cols-[repeat(auto-fit,_minmax(12rem,_1fr))] sm:grid-cols-[repeat(auto-fit,_minmax(18rem,_1fr))]">
-      @for ($i = 0; $i < 3; $i++)
-      {{-- Producto --}}
-      <x-card/>
-      @endfor
+      @foreach($productos as $producto)
+        <x-card :producto="$producto"/>
+      @endforeach
     </article>
   </section>
   {{-- MOSTRAR BENEFICIOS --}}

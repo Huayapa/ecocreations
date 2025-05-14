@@ -5,26 +5,13 @@
 <header class="relative h-[30rem] sm:h-[40rem] w-full overflow-hidden">
   {{-- CARRUSEL --}}
   <section class="flex w-full transition duration-500 ease-in-out cursor-pointer" id="carrusel">
-    <article class="w-full min-w-full h-[30rem] sm:h-[40rem] flex flex-col justify-end items-center relative" data-box="0">
-      <img class="absolute -z-10 w-full h-full object-cover brightness-70" src="{{ asset("img/categorias/cosmeticacorporal.webp") }}" alt="">
-      <h2 class="text-4xl md:text-7xl mb-[2rem] text-white text-center">Cosmética natural</h2>
-      <button class="px-[2rem] py-[1rem] mb-[4rem] bg-[var(--dark-eco)] text-white rounded-2xl text-xl md:text-3xl font-bold max-w-[16rem] w-full cursor-pointer hover:brightness-50">Visitar</button>
-    </article>
-    <article class="w-full min-w-full h-[30rem] sm:h-[40rem] flex flex-col justify-end items-center relative" data-box="1">
-      <img class="absolute -z-10 w-full h-full object-cover brightness-70" src="{{ asset("img/categorias/higiene.jpg") }}" alt="">
-      <h2 class="text-4xl md:text-7xl mb-[2rem] text-white text-center">Higiene y cuidado corporal</h2>
-      <button class="px-[2rem] py-[1rem] mb-[4rem] bg-[var(--dark-eco)] text-white rounded-2xl text-xl md:text-3xl font-bold max-w-[16rem] w-full cursor-pointer hover:brightness-50">Visitar</button>
-    </article>
-    <article class="w-full min-w-full h-[30rem] sm:h-[40rem] flex flex-col justify-end items-center relative" data-box="2">
-      <img class="absolute -z-10 w-full h-full object-cover brightness-70" src="{{ asset("img/categorias/utensilios.jpg") }}" alt="">
-      <h2 class="text-4xl md:text-7xl mb-[2rem] text-white text-center">Utensilios reutilizables</h2>
-      <button class="px-[2rem] py-[1rem] mb-[4rem] bg-[var(--dark-eco)] text-white rounded-2xl text-xl md:text-3xl font-bold max-w-[16rem] w-full cursor-pointer hover:brightness-50">Visitar</button>
-    </article>
-    <article class="w-full min-w-full h-[30rem] sm:h-[40rem] flex flex-col justify-end items-center relative" data-box="3">
-      <img class="absolute -z-10 w-full h-full object-cover brightness-70" src="{{ asset("img/categorias/decoracion.jpg") }}" alt="">
-      <h2 class="text-4xl md:text-7xl mb-[2rem] text-white text-center">Decoración reciclados</h2>
-      <button class="px-[2rem] py-[1rem] mb-[4rem] bg-[var(--dark-eco)] text-white rounded-2xl text-xl md:text-3xl font-bold max-w-[16rem] w-full cursor-pointer hover:brightness-50">Visitar</button>
-    </article>
+    @foreach ($categorias as $categoria)
+      <article class="w-full min-w-full h-[30rem] sm:h-[40rem] flex flex-col justify-end items-center relative" data-box="{{ $categoria->idCategoria - 1 }}">
+        <img class="absolute -z-10 w-full h-full object-cover brightness-70" src="data:image/jpeg;base64,{{ $categoria->imagen_base64}}" alt="">
+        <h2 class="text-4xl md:text-7xl mb-[2rem] text-white text-center">{{$categoria->nombre}}</h2>
+        <button class="px-[2rem] py-[1rem] mb-[4rem] bg-[var(--dark-eco)] text-white rounded-2xl text-xl md:text-3xl font-bold max-w-[16rem] w-full cursor-pointer hover:brightness-50">Visitar</button>
+      </article>
+    @endforeach
   </section>
 </header>
 {{-- PRODUCTOS --}}
@@ -81,19 +68,19 @@
     </article>
     <h2 class="hidden lg:block text-xl lg:text-3xl font-bold mt-3 mb-3">Productos Nuevos</h2>
     <div class="hidden lg:flex flex-col">
-      @for ($i = 0; $i < 3; $i++)
+      @foreach ( $productosnew as $producto)
       <article class="mb-[0.5rem]">
           <div class="flex items-center justify-between">
             <section class="flex items-center gap-[0.5rem]">
               <img 
-              class="w-[3rem] h-[3rem] lg:w-[4rem] lg:h-[4rem] object-cover object-center rounded-lg"
-              src="{{ asset('img/prod1.webp') }}" alt="prod1" >
+              class="w-[3rem] h-[3rem] lg:w-[4rem] lg:h-[4rem] object-cover object-center rounded-lg bg-[var(--green-eco)]/70"
+              src="data:image/jpeg;base64,{{ $producto->imagen_base64}}" alt="prod1" >
               <article>
-                <h4>Cepillo de bambu</h4>
-                <span>S50.00</span>
+                <h4>{{$producto->nombre}}</h4>
+                <span>S/{{$producto->precio}}</span>
               </article>
             </section>
-            <a href="detalleproducto/1" class="bg-[var(--dark-eco)] text-white rounded-lg w-[2rem] h-[2rem] cursor-pointer flex items-center justify-center hover:bg-[var(--green-eco)]">
+            <a href="detalleproducto/{{ $producto->idProducto }}" class="bg-[var(--dark-eco)] text-white rounded-lg w-[2rem] h-[2rem] cursor-pointer flex items-center justify-center hover:bg-[var(--green-eco)]">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 576 512">
                 <path class="fill-white" d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/>
               </svg>
@@ -101,7 +88,7 @@
           </div>
         <div class="w-full h-[2px] bg-[var(--border-eco)] mt-2"></div>
       </article>
-      @endfor
+      @endforeach
     </div>
   </aside>
   {{-- Productos --}}
@@ -109,10 +96,10 @@
     <h2 class="text-3xl mb-3">Cantidad: 7</h2>
     {{-- lista --}}
     <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-      @for ($i = 0; $i < 7; $i++)
-      {{-- Producto --}}
-      <x-card/>
-      @endfor
+      @foreach ( $productos as $producto)
+      <x-card :producto="$producto"/>
+        
+      @endforeach
     </section>
   </article>
   {{-- Filtro mobile boton --}}

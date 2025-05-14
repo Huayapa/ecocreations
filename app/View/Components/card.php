@@ -8,12 +8,10 @@ use Illuminate\Contracts\View\View;
 
 class card extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $producto;
+    public function __construct($producto)
     {
-        //
+        $this->producto = $producto;
     }
 
     /**
