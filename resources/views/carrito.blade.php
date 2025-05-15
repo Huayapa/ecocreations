@@ -17,17 +17,17 @@
           </tr>
         </thead>
         <tbody >
-          @for ($i = 0; $i < 3; $i++)
-          <tr>
-            <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)]">
-              <img src="{{ asset("img/prod1.webp") }}" alt="" class="p-[0.5rem] max-w-[5rem] max-h-[5rem] lg:max-w-[7rem] w-full lg:max-h-[7rem] h-full object-cover object-top bg-[var(--green-eco)]/50 rounded-2xl">
-            </td>
-            <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">Cepillo de bambú</td>
-            <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">3</td>
-            <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">S/50.00</td>
-            <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">S/150.00</td>
-          </tr>
-          @endfor
+          @foreach ($carrito as $producto)
+            <tr>
+              <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)]">
+                <img src="data:image/jpeg;base64,{{ $producto["imagen"]}}" alt="" class="p-[0.5rem] max-w-[5rem] max-h-[5rem] lg:max-w-[7rem] w-full lg:max-h-[7rem] h-full object-cover object-top bg-[var(--green-eco)]/50 rounded-2xl">
+              </td>
+              <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">{{ $producto["nombre"]}}</td>
+              <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">{{ $producto["stock"]}}</td>
+              <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">S/{{ $producto["precio"]}}</td>
+              <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">S/{{ $producto["stock"] * $producto["precio"] }}</td>
+            </tr>
+          @endforeach
         </tbody>
       </table>
     </section>

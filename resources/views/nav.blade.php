@@ -13,7 +13,7 @@
     </section>
     <div class="flex items-center gap-[1rem]">
       {{-- Boton de carrito de compras --}}
-      <x-carrito-boton/>
+      <x-carrito-boton />
       {{-- Boton de menu --}}
       <button class="block lg:hidden cursor-pointer" id="btn-menu">
           <svg width="35" height="35" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -36,7 +36,7 @@
     <nav id="nav-cart" class="border-2 border-[var(--border-eco)] z-10 bg-white hidden w-[15rem] sm:w-[20rem] p-[1rem] rounded-lg absolute top-[109px] right-[10px] lg:right-[180px] text-[var(--dark-eco)] max-h-[30rem] min-h-[30rem]">
         <h3 class="text-2xl font-bold">Carrito</h3>
         {{-- Lista de productos --}}
-        <x-carrito-compras/>
+        <x-carrito-compras />
     </nav>
 </nav>
 <script>
