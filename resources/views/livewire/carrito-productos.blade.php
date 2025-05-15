@@ -31,6 +31,6 @@
     {{-- TOTAL PRODUCTO PRECIO --}}
     <section class="flex justify-between font-bold text-xl">
       <h5>Total</h5>
-      <span>S/{{ $totalprecio }}</span>
+      <span>S/{{ $carrito["subtotal"] }}</span>
     </section>
 </div>

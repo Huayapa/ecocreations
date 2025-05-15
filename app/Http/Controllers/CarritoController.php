@@ -8,16 +8,43 @@ use Illuminate\Http\Request;
 
 class CarritoController extends Controller
 {   
+    public float $subtotal = 0;
+    public float $igv = 0.18;
+    public float $total = 0;
+    public float $impuesto = 0;
     // Diriguirse a la pagina carrito
-    public function view() {
+    public function viewCart() {
         $carrito = session()->get('carrito', []);
-        return view('carrito', compact('carrito'));
+        foreach ($carrito as $producto) { 
+           $this->subtotal += $producto["subtotal"];
+        }
+        $this->impuesto = $this->subtotal * $this->igv;
+        
+        return view('carrito', [
+            'carrito' => $carrito,
+            'detalles' => [
+                'subtotal' => $this->subtotal,
+                'impuesto' => $this->impuesto,
+                'total' => $this->subtotal + $this->impuesto,
+            ]
+        ]);
     }
-
-    // SE NECESITA EL ID DEL PRODUCTO PARA FUNCIONAR "idProducto"
-    public function mostrar() {
+    //Diriguirse a la pagina de boleta
+    public function viewBoleta() {
         $carrito = session()->get('carrito', []);
-        return view('nav', compact('carrito'));
+        foreach ($carrito as $producto) { 
+           $this->subtotal += $producto["subtotal"];
+        }
+        $this->impuesto = $this->subtotal * $this->igv;
+        
+        return view('boleta', [
+            'carrito' => $carrito,
+            'detalles' => [
+                'subtotal' => $this->subtotal,
+                'impuesto' => $this->impuesto,
+                'total' => $this->subtotal + $this->impuesto,
+            ]
+        ]);
     }
     public function agregar(Request $request) { // POST
         // Buscar producto por id
@@ -31,6 +58,7 @@ class CarritoController extends Controller
 
         if (isset($carrito[$id])) {
             $carrito[$id]['stock']++;
+            $carrito[$id]["subtotal"] = $carrito[$id]['stock'] * $carrito[$id]['precio'];
         } else {
             $carrito[$id] = [
                 "idProducto" => $producto->idProducto,
@@ -40,9 +68,9 @@ class CarritoController extends Controller
                 "stock" => 1,
                 "imagen" => base64_encode($producto->imagen),
                 "estado" => $producto->estado,
-                "idCategoria" => $producto->idCategoria
+                "idCategoria" => $producto->idCategoria,
+                "subtotal" => $producto->precio * 1
             ];
-            // formatear imagen
         }
 
         session()->put('carrito', $carrito);

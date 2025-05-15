@@ -7,18 +7,24 @@
     {{-- FILA1 --}}
     <section class="w-full">
       {{-- PRODUCTOS --}}
-      <article>
-        @for ($i = 0; $i < 3; $i++)
+      @if(!$carrito)
+        <article class="h-[10rem] flex justify-center items-center">
+          <h3>No hay productos</h3>
+        </article>
+      @else
+        <article>
+          @foreach ( $carrito as $producto)
           <section class="flex gap-3 w-full pb-[0.5rem] mb-[1rem] border-b-2 border-[var(--border-eco)]">
-            <img src="{{ asset("img/prod1.webp") }}" alt="" class="p-[0.5rem] max-w-[5rem] max-h-[5rem] lg:max-w-[7rem] w-full lg:max-h-[7rem] h-full object-cover object-top bg-[var(--green-eco)]/50 rounded-2xl">
+            <img src="data:image/jpeg;base64,{{ $producto["imagen"]}}" alt="" class="p-[0.5rem] max-w-[5rem] max-h-[5rem] lg:max-w-[7rem] w-full lg:max-h-[7rem] h-full object-cover object-top bg-[var(--green-eco)]/50 rounded-2xl">
             <article class="w-full flex flex-col items-start justify-center">
-              <h3 class="text-xl">Cepillo de bambú</h3>
-              <span>3 x S/50.00</span>
-              <span class="w-full text-end text-xl">S/150.00</span>
+              <h3 class="text-xl">{{$producto["nombre"]}}</h3>
+              <span>{{ $producto["stock"] . " x S/" . $producto["precio"] }}</span>
+              <span class="w-full text-end text-xl">S/{{$producto["subtotal"]}}</span>
             </article>
           </section>
-        @endfor
-      </article>
+          @endforeach 
+        </article>
+      @endif
       {{-- METODO DE PAGO --}}
       <article class="w-full min-h-[5rem] bg-[var(--dark-eco)] rounded-lg flex items-center px-[1rem] gap-[1rem]">
         <button class="bg-white rounded-lg p-[1rem] hover:opacity-50 cursor-pointer transition">
@@ -69,18 +75,18 @@
         <div class="h-[4rem]">
           <article class="flex justify-between items-center">
             <h3 class="text-xl">Subtotal</h3>
-            <span>S/150.00</span>
+            <span>S/{{$detalles["subtotal"]}}</span>
           </article>
           <article class="flex justify-between items-center">
             <h3 class="text-xl">Impuesto</h3>
-            <span>S/20.00</span>
+            <span>S/{{$detalles["impuesto"]}}</span>
           </article>
         </div>
         <article>
           <div class="w-full h-[2px] bg-white my-[1rem]"></div>
           <section class="flex justify-between items-center">
             <h3 class="text-xl">Total</h3>
-            <span>S/180.00</span>
+            <span>S/{{$detalles["total"]}}</span>
           </section>
         </article>
       </section>

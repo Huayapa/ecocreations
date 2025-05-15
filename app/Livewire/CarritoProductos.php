@@ -8,13 +8,17 @@ use Livewire\Component;
 class CarritoProductos extends Component
 {
     public array $productos = [];
+    public float $subtotal = 0;
+    public float $igv = 0.18;
     public float $total = 0;
+    public float $impuesto = 0;
     protected $listeners = ['carritoActualizado' => 'cargarProductos'];
 
     public function mount()
     {
         $this->cargarProductos();
-        $this->calctotalprecio();
+        $this->calcsubprecio();
+        $this->calctotal();
     }
 
     public function cargarProductos()
@@ -22,21 +26,31 @@ class CarritoProductos extends Component
         $carrito = session('carrito', []);
         $this->productos = $carrito;
     }
-    public function calctotalprecio()
+    public function calcsubprecio()
     {
         $carrito = session('carrito', []);
         foreach ($carrito as $producto) { 
-           $this->total += $producto["stock"] * $producto["precio"];
+           $this->subtotal += $producto["subtotal"];
         }
     }
 
-    
+    public function calctotal() {
+        if($this->subtotal > 0) {
+            $this->impuesto =  $this->subtotal * $this->igv;
+            $this->total = $this->impuesto + $this->subtotal;
+        }
+        
+    }
 
     public function render()
     {
         return view('livewire.carrito-productos', [
             'productos' => $this->productos,
-            'totalprecio' => $this->total
+            'carrito' => [
+                'subtotal' => $this->subtotal,
+                'impuesto' => $this->impuesto,
+                'total' => $this->total
+            ]
         ]);
     }
 }

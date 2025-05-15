@@ -17,17 +17,25 @@
           </tr>
         </thead>
         <tbody >
-          @foreach ($carrito as $producto)
+          @if(!$carrito)
             <tr>
-              <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)]">
-                <img src="data:image/jpeg;base64,{{ $producto["imagen"]}}" alt="" class="p-[0.5rem] max-w-[5rem] max-h-[5rem] lg:max-w-[7rem] w-full lg:max-h-[7rem] h-full object-cover object-top bg-[var(--green-eco)]/50 rounded-2xl">
+              <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-center h-[17rem]" colspan="5">
+                No hay productos aun en tu carrito de compras.
               </td>
-              <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">{{ $producto["nombre"]}}</td>
-              <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">{{ $producto["stock"]}}</td>
-              <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">S/{{ $producto["precio"]}}</td>
-              <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">S/{{ $producto["stock"] * $producto["precio"] }}</td>
             </tr>
-          @endforeach
+          @else
+            @foreach ($carrito as $producto)
+              <tr>
+                <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)]">
+                  <img src="data:image/jpeg;base64,{{ $producto["imagen"]}}" alt="" class="p-[0.5rem] max-w-[5rem] max-h-[5rem] lg:max-w-[7rem] w-full lg:max-h-[7rem] h-full object-cover object-top bg-[var(--green-eco)]/50 rounded-2xl">
+                </td>
+                <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">{{ $producto["nombre"]}}</td>
+                <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">{{ $producto["stock"]}}</td>
+                <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">S/{{ $producto["precio"]}}</td>
+                <td class="py-[0.5rem] border-b-2 border-[var(--border-eco)] text-sm md:text-md lg:text-lg text-center">S/{{ $producto["subtotal"] }}</td>
+              </tr>
+            @endforeach
+          @endif
         </tbody>
       </table>
     </section>
@@ -37,18 +45,18 @@
       <div class="h-[10rem]">
         <article class="flex justify-between items-center">
           <h3 class="text-xl">Subtotal</h3>
-          <span>S/150.00</span>
+          <span>S/{{$detalles["subtotal"]}}</span>
         </article>
         <article class="flex justify-between items-center">
           <h3 class="text-xl">Impuesto</h3>
-          <span>S/20.00</span>
+          <span>S/{{$detalles["impuesto"]}}</span>
         </article>
       </div>
       <article>
         <div class="w-full h-[2px] bg-white my-[1rem]"></div>
         <section class="flex justify-between items-center">
           <h3 class="text-xl">Total</h3>
-          <span>S/180.00</span>
+          <span>S/{{$detalles["total"]}}</span>
         </section>
       </article>
       <button id="btn-boleta" class="block my-[1rem] w-full py-[0.6rem] text-2xl border-2 border-[var(--green-eco)] rounded-lg cursor-pointer hover:bg-white hover:text-black transition">Comprar</button>
