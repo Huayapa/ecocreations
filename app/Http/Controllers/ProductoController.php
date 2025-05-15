@@ -16,7 +16,7 @@ class ProductoController extends Controller
             return redirect("/");
         }
         if($producto->imagen) {
-            $producto->imagen_base64 = base64_encode($producto->imagen);
+            $producto->imagen = base64_encode($producto->imagen);
         }
         return view("detalleproducto", compact("producto"));
     }

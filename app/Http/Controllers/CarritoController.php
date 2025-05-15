@@ -4,79 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Producto;
+use App\Services\CarritoService;
 use Illuminate\Http\Request;
 
-class CarritoController extends Controller
-{   
-    public float $subtotal = 0;
-    public float $igv = 0.18;
-    public float $total = 0;
-    public float $impuesto = 0;
-    // Diriguirse a la pagina carrito
+class CarritoController extends Controller {   
+    protected CarritoService $carritoService;
+    public function __construct(CarritoService $carritoService) {
+        $this->carritoService = $carritoService;
+    }
     public function viewCart() {
-        $carrito = session()->get('carrito', []);
-        foreach ($carrito as $producto) { 
-           $this->subtotal += $producto["subtotal"];
-        }
-        $this->impuesto = $this->subtotal * $this->igv;
-        
-        return view('carrito', [
-            'carrito' => $carrito,
-            'detalles' => [
-                'subtotal' => $this->subtotal,
-                'impuesto' => $this->impuesto,
-                'total' => $this->subtotal + $this->impuesto,
-            ]
-        ]);
+        $carrito = $this->carritoService->obtenerProductos();
+        $detalles = $this->carritoService->calcularTotales($carrito);
+        return view('carrito', compact('carrito', 'detalles'));
     }
-    //Diriguirse a la pagina de boleta
-    public function viewBoleta() {
-        $carrito = session()->get('carrito', []);
-        foreach ($carrito as $producto) { 
-           $this->subtotal += $producto["subtotal"];
-        }
-        $this->impuesto = $this->subtotal * $this->igv;
-        
-        return view('boleta', [
-            'carrito' => $carrito,
-            'detalles' => [
-                'subtotal' => $this->subtotal,
-                'impuesto' => $this->impuesto,
-                'total' => $this->subtotal + $this->impuesto,
-            ]
-        ]);
+    public function viewBoleta(){
+        $carrito = $this->carritoService->obtenerProductos();
+        $detalles = $this->carritoService->calcularTotales($carrito);
+        return view('boleta', compact('carrito', 'detalles'));
     }
-    public function agregar(Request $request) { // POST
-        // Buscar producto por id
-        $id = $request->input('idProducto'); //Acceder al valor del input
-        $producto = Producto::find($id);
-        if (!$producto) {
-            return redirect()->back()->with('error', 'Producto no encontrado.');
-        }
-        // Agrega session y si existe en la lista, solo lo suma
-        $carrito = session()->get('carrito', []);
+    public function agregar(Request $request)
+    {
+        $isok = $this->carritoService->agregarProducto($request->input('idProducto'));
 
-        if (isset($carrito[$id])) {
-            $carrito[$id]['stock']++;
-            $carrito[$id]["subtotal"] = $carrito[$id]['stock'] * $carrito[$id]['precio'];
-        } else {
-            $carrito[$id] = [
-                "idProducto" => $producto->idProducto,
-                'nombre' => $producto->nombre,
-                'descripcion' => $producto->descripcion,
-                'precio' => $producto->precio,
-                "stock" => 1,
-                "imagen" => base64_encode($producto->imagen),
-                "estado" => $producto->estado,
-                "idCategoria" => $producto->idCategoria,
-                "subtotal" => $producto->precio * 1
-            ];
-        }
-
-        session()->put('carrito', $carrito);
-        return redirect()->back()->with('success', 'Producto agregado al carrito.');
+        return redirect()->back()->with($isok ? 'success' : 'error', $isok ? 'Producto agregado al carrito.' : 'Producto no encontrado.');
     }
-    public function eliminar() {
+    public function eliminar(Request $request)
+    {
+        $isok = $this->carritoService->eliminarProducto($request->input('idProducto'));
 
+        return redirect()->back()->with($isok ? 'success' : 'error', $isok ? 'Producto eliminado del carrito.' : 'El producto no está en el carrito.');
     }
 }

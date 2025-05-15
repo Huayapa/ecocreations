@@ -1,31 +1,9 @@
 @extends("layouts.ecocreations")
 @section("titulo", $producto->nombre )
 @section("content")
-@if(session(key: 'success')) 
-    <div id="messageadd" class="flex fixed delete-animation top-[1rem] left-[1rem] z-40 items-center w-fit max-w-xs p-4 mb-4 text-white bg-[var(--dark-eco)] rounded-lg shadow-sm" role="alert">
-        <div class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg">
-            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-            </svg>
-            <span class="sr-only">Agregado al carrito</span>
-        </div>
-        <div class="ms-3 text-sm font-normal">{{ session(key: 'success') }}</div>
-    </div>
-@endif
-@if(session(key: 'error')) 
-    <div id="toast-danger" class="flex fixed delete-animation top-[1rem] left-[1rem] z-40 items-center w-fit max-w-xs p-4 mb-4 text-white bg-[var(--dark-eco)] rounded-lg shadow-sm" role="alert">
-        <div class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg">
-            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
-            </svg>
-            <span class="sr-only">Error icon</span>
-        </div>
-        <div class="ms-3 text-sm font-normal">{{ session('error') }}</div>
-    </div>
-@endif
 <section data-idprod="{{$producto->idProducto}}" class="w-full px-[4vw] md:px-[14vw] py-[10rem]  sm:py-[12rem] min-h-dvh flex justify-center items-center">
   <article class="w-full h-full bg-[var(--dark-eco)] p-[1rem] lg:p-[2rem] rounded-2xl flex flex-wrap lg:flex-nowrap gap-[0.5rem] lg:gap-[1.5rem]">
-    <img src="data:image/jpeg;base64,{{ $producto->imagen_base64}}" alt="" class="bg-white h-[20rem] lg:h-full w-full max-w-[100%] lg:max-w-[21rem] object-cover object-top rounded-2xl">
+    <img src="data:image/jpeg;base64,{{ $producto->imagen}}" alt="" class="bg-white h-[20rem] lg:h-full w-full max-w-[100%] lg:max-w-[21rem] object-cover object-top rounded-2xl">
     <section class="w-full text-white flex flex-col justify-between">
       <h1 class="text-3xl lg:text-4xl ">{{ $producto->nombre }}</h1>
       <p class="text-md lg:text-xl my-[1.2rem] sm:my-[0.5rem] max-h-[12rem] overflow-auto">
@@ -61,7 +39,9 @@
 </section>
 <script>
   function addprod() {
-      Livewire.emit('carritoActualizado');
+      document.addEventListener('livewire:load', function () {
+        Livewire.emit('carritoActualizado');
+        });
     }
 </script>
 @endsection

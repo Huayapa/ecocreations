@@ -7,7 +7,7 @@
   <section class="flex w-full transition duration-500 ease-in-out cursor-pointer" id="carrusel">
     @foreach ($categorias as $categoria)
       <article class="w-full min-w-full h-[30rem] sm:h-[40rem] flex flex-col justify-end items-center relative" data-box="{{ $categoria->idCategoria - 1 }}">
-        <img class="absolute -z-10 w-full h-full object-cover brightness-70" src="data:image/jpeg;base64,{{ $categoria->imagen_base64}}" alt="">
+        <img class="absolute -z-10 w-full h-full object-cover brightness-70" src="data:image/jpeg;base64,{{ $categoria->imagen}}" alt="">
         <h2 class="text-4xl md:text-7xl mb-[2rem] text-white text-center">{{$categoria->nombre}}</h2>
         <button class="px-[2rem] py-[1rem] mb-[4rem] bg-[var(--dark-eco)] text-white rounded-2xl text-xl md:text-3xl font-bold max-w-[16rem] w-full cursor-pointer hover:brightness-50">Visitar</button>
       </article>
@@ -74,7 +74,7 @@
             <section class="flex items-center gap-[0.5rem]">
               <img 
               class="w-[3rem] h-[3rem] lg:w-[4rem] lg:h-[4rem] object-cover object-center rounded-lg bg-[var(--green-eco)]/70"
-              src="data:image/jpeg;base64,{{ $producto->imagen_base64}}" alt="prod1" >
+              src="data:image/jpeg;base64,{{ $producto->imagen}}" alt="prod1" >
               <article>
                 <h4>{{$producto->nombre}}</h4>
                 <span>S/{{$producto->precio}}</span>

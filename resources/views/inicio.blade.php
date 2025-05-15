@@ -1,19 +1,7 @@
 @extends("layouts.ecocreations")
 @section("titulo", "Eco Creations")
 @section("content")
-@if(session('error'))
-<div id="toast-danger" class="flex fixed delete-animation top-[1rem] left-[1rem] z-40 items-center w-fit max-w-xs p-4 mb-4 text-white bg-[var(--dark-eco)] rounded-lg shadow-sm" role="alert">
-    <div class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg">
-        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
-        </svg>
-        <span class="sr-only">Error icon</span>
-    </div>
-    <div class="ms-3 text-sm font-normal">{{ session('error') }}</div>
-</div>
-@endif
-  {{-- INICIO DE LA PAGINA INICIO --}}
-
+{{-- INICIO DE LA PAGINA INICIO --}}
   <header 
   class="w-full fondo-inicio h-[34rem] md:h-[34rem] bg-no-repeat bg-center bg-cover px-[4vw] md:px-[10vw] flex flex-col justify-center gap-3 md:grid grid-rows-[10rem_1fr_10rem] md:grid-rows-5 grid-cols-1 md:grid-cols-2"
   >
@@ -46,7 +34,7 @@
   <section class="w-full min-h-[8rem] py-4 bg-[var(--dark-eco)] text-white px-[4vw] md:px-[10vw] flex flex-col sm:flex-row justify-stretch items-center">
     @foreach ($categorias as $categoria)
     <a href="#" class="relative w-full text-center bg-[var(--dark-eco)] h-[6rem] flex items-center justify-center hover:opacity-90 transition">
-      <img class="absolute w-full h-[6rem] object-cover z-10 opacity-60" src="data:image/jpeg;base64,{{ $categoria->imagen_base64}}" alt="">
+      <img class="absolute w-full h-[6rem] object-cover z-10 opacity-60" src="data:image/jpeg;base64,{{ $categoria->imagen}}" alt="">
       <span class="z-20">{{$categoria->nombre}}</span>
     </a>
     @endforeach
