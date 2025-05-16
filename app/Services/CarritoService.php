@@ -20,12 +20,22 @@ class CarritoService
             'total' => $subtotal + $impuesto,
         ];
     }
-    public function agregarProducto(int $idProducto): bool {
+    public function agregarProducto(int $idProducto, ?int $cantidadprod = 0): bool {
         $producto = Producto::find($idProducto);
         if (!$producto) return false;
+
         $carrito = session()->get('carrito', []);
+        $cantidadEnCarrito = $carrito[$idProducto]['stock'] ?? 0;
+
+        $cantidadNueva = ($cantidadprod !== null && $cantidadprod > 0) ? $cantidadprod : 1;
+        $cantidadTotal = $cantidadEnCarrito + $cantidadNueva;
+
+        // Validar contra el stock real del producto
+        if ($cantidadTotal > $producto->stock) {
+            return false; 
+        }
         if (isset($carrito[$idProducto])) {
-            $carrito[$idProducto]['stock']++;
+            $carrito[$idProducto]['stock'] += $cantidadprod;
             $carrito[$idProducto]['subtotal'] = $carrito[$idProducto]['stock'] * $carrito[$idProducto]['precio'];
         } else {
             $carrito[$idProducto] = [
@@ -33,7 +43,7 @@ class CarritoService
                 'nombre' => $producto->nombre,
                 'descripcion' => $producto->descripcion,
                 'precio' => $producto->precio,
-                'stock' => 1,
+                'stock' => $cantidadNueva,
                 'imagen' => base64_encode($producto->imagen),
                 'estado' => $producto->estado,
                 'idCategoria' => $producto->idCategoria,

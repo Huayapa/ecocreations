@@ -13,35 +13,58 @@
         <h2 class="text-lg">Cantidad Disponible</h2>
         <div class="w-[3rem] h-[3rem] text-2xl bg-white text-[var(--dark-eco)] flex items-center justify-center rounded-lg">{{$producto->stock}}</div>
       </div>
-      <div class="flex gap-0.5">
-        <button class="w-[3rem] h-[3rem] bg-white flex items-center justify-center rounded-s-xl cursor-pointer hover:opacity-80 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="30" height="30">
-            <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/>
-          </svg>
-        </button>
-        <input type="number" value="1" class="w-[3rem] h-[3rem] bg-white text-black text-center">
-        <button class="w-[3rem] h-[3rem] bg-white flex items-center justify-center rounded-e-xl cursor-pointer hover:opacity-80 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="30" height="30">
-            <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
-          </svg>
-        </button>
-      </div>
-      <div class="w-full flex mt-[2rem] items-center flex-wrap justify-center sm:justify-between gap-3 sm:flex-nowrap">
-        <div class="text-3xl">S/{{ $producto->precio }}</div>
-        <form method="POST" action="{{ route('carrito.agregar') }}" style="display:inline;" onclick="addprod()">
-            @csrf
+      {{-- INTERACCION DE CANTIDAD DEL PRODUCTO --}}
+      <form method="POST" action="{{ route('carrito.agregar') }}" style="display:inline;" onclick="addprod()">
+        @csrf
+        <div class="flex gap-0.5">
+          <button id="btnmas" type="button" class="w-[3rem] h-[3rem] bg-white flex items-center justify-center rounded-s-xl cursor-pointer hover:opacity-80 transition" >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="30" height="30">
+              <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/>
+            </svg>
+          </button>
+          <input id="valuenumber" name="cantidadprod" type="number" value="1" class="w-[3rem] h-[3rem] bg-white text-black text-center">
+          <button id="btnmenos" type="button" class="w-[3rem] h-[3rem] bg-white flex items-center justify-center rounded-e-xl cursor-pointer hover:opacity-80 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="30" height="30">
+              <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="w-full flex mt-[2rem] items-center flex-wrap justify-center sm:justify-between gap-3 sm:flex-nowrap">
+          <div class="text-3xl">S/{{ $producto->precio }}</div>
             <input type="hidden" name="idProducto" value="{{ $producto->idProducto }}">
-            <button onclick="addprod({{$producto->idProducto}})" class=" border-2 border-[var(--green-eco)] rounded-lg py-[0.8rem] px-[2rem] text-xl cursor-pointer w-full sm:w-auto hover:bg-white hover:text-[var(--dark-eco)] transition">Añadir al carrito</button>
-        </form>
-      </div>
+            <button  type="submit" onclick="addprod({{$producto->idProducto}})" class=" border-2 border-[var(--green-eco)] rounded-lg py-[0.8rem] px-[2rem] text-xl cursor-pointer w-full sm:w-auto hover:bg-white hover:text-[var(--dark-eco)] transition">Añadir al carrito</button>
+        </div>
+      </form>
     </section>
   </article>
 </section>
 <script>
+  // HACER CAMBIOS
   function addprod() {
-      document.addEventListener('livewire:load', function () {
-        Livewire.emit('carritoActualizado');
-        });
+    document.addEventListener('livewire:load', function () {
+      Livewire.emit('carritoActualizado');
+    });
+  }
+  // FUNCION PARA LA CANTIDAD DEL PRODUCTO
+  const $btnmas = document.getElementById("btnmas"),
+    $btnmenos = document.getElementById("btnmenos"),
+    $inputcantidad = document.getElementById("valuenumber");
+  const cantidadmaxima = {{ $producto->stock }};
+  $btnmas.addEventListener("click", e => {
+    if($inputcantidad.value < cantidadmaxima) {
+      $inputcantidad.value++;
     }
+  });
+  $inputcantidad.addEventListener("input", e => {
+    const val = parseInt($inputcantidad.value);
+    if (isNaN(val) || val < 1 || val > cantidadmaxima) {
+      $inputcantidad.value = 1;
+    }
+  })
+  $btnmenos.addEventListener("click", e => {
+    if($inputcantidad.value > 1) {
+      $inputcantidad.value--;
+    }
+  });
 </script>
 @endsection

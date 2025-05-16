@@ -24,9 +24,9 @@ class CarritoController extends Controller {
     }
     public function agregar(Request $request)
     {
-        $isok = $this->carritoService->agregarProducto($request->input('idProducto'));
+        $isok = $this->carritoService->agregarProducto($request->input('idProducto'), $request->input('cantidadprod'));
 
-        return redirect()->back()->with($isok ? 'success' : 'error', $isok ? 'Producto agregado al carrito.' : 'Producto no encontrado.');
+        return redirect()->back()->with($isok ? 'success' : 'error', $isok ? 'Producto agregado al carrito.' : 'Producto no encontrado o sin stock en tu carrito.');
     }
     public function eliminar(Request $request)
     {
