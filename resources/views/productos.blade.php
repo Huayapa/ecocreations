@@ -93,7 +93,7 @@
   </aside>
   {{-- Productos --}}
   <article class="col-span-3 lg:col-span-2">
-    <h2 class="text-3xl mb-3">Cantidad: 7</h2>
+    <h2 class="text-3xl mb-3">Cantidad: {{ count($productos) }}</h2>
     {{-- lista --}}
     <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
       @foreach ( $productos as $producto)
@@ -101,6 +101,9 @@
         
       @endforeach
     </section>
+    <div class="mt-4 flex gap-1 w-full justify-center">
+        {{ $productos->links("pagination::tailwind") }}
+    </div>
   </article>
   {{-- Filtro mobile boton --}}
   <button id="btnfilter" class="lg:hidden fixed bg-[var(--dark-eco)] p-[1rem] rounded-2xl cursor-pointer bottom-[3rem] right-[5vw] z-20">

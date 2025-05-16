@@ -13,8 +13,10 @@ class TiendaController extends Controller
 {
     public function index() {
         // TODOS LOS PRODUCTOS NUEVOS
-        $productos = Producto::orderBy('idProducto', 'desc')->take(15)->get();
-        $productos = $this->convertImg($productos);
+        $productos = Producto::orderBy('idProducto', 'desc')->paginate(15);
+        foreach ($productos as $producto) {
+            $producto->imagen = base64_encode($producto->imagen);
+        }
         // TODOS LAS CATEGORIAS DISPONIBLES
         $categorias = Categoria::all();
         $categorias = $this->convertImg($categorias);
