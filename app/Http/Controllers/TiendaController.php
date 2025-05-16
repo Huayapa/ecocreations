@@ -25,11 +25,12 @@ class TiendaController extends Controller
         $productosnew = $this->convertImg($productosnew);
 
 
-        return view('productos', compact(
-            'productosnew',
-            'productos',
-            'categorias',
-        ));
+        // return view('productos', compact(
+        //     'productosnew',
+        //     'productos',
+        //     'categorias',
+        // ));
+        return view('productos', compact("categorias"));
     }
 
     public function convertImg($list) {
