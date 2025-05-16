@@ -3,7 +3,7 @@
   {{-- Filtros --}}
   <aside id="filter" class="fixed hidden bottom-[7.2rem] right-[5vw] w-[16rem] z-70 lg:z-30 bg-white lg:block lg:static col-span-1 lg:w-full border-2 border-[var(--border-eco)] rounded-2xl p-[0.6rem] lg:p-[1rem]">
     <h2 class="text-xl lg:text-3xl font-bold">Filtros</h2>
-    <input class="w-full py-[0.3rem] lg:py-[0.5rem] my-[0.3rem] lg:my-[1rem] border-2 rounded-lg border-[var(--border-eco)] placeholder:pl-[1rem] focus:outline-[var(--green-eco)]" type="search" placeholder="Buscar Producto">
+    <input wire:model.live.debounce.500ms="search" class="w-full py-[0.3rem] lg:py-[0.5rem] my-[0.3rem] lg:my-[1rem] border-2 rounded-lg border-[var(--border-eco)] placeholder:pl-[1rem] focus:outline-[var(--green-eco)]" type="search" placeholder="Buscar Producto">
     <h2 class="text-xl lg:text-3xl font-bold">Categorías</h2>
     <ul>
     @foreach ($categorias as $cat)

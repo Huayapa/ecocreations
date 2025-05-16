@@ -12,12 +12,13 @@ class ProductFilter extends Component
     use WithPagination;
     public $selectedCategories = [];
     public $sortOrder = 'newest'; //por defecto muestra del nuevo al viejo
+    public $search = '';
     public $page = 1;
-    protected $updatesQueryString = ['selectedCategories', 'sortOrder', 'page'];
+    protected $updatesQueryString = ['selectedCategories', 'sortOrder', 'page' , 'search'];
     //Metodo del livewire que se ejecuta antes  de que se actualize una propiedad
     public function updating($field){
         // Verificar si el cambio esta en el array, para volverte a la paginacion 1
-        if (in_array($field, ['selectedCategories', 'sortOrder'])) {
+        if (in_array($field, ['selectedCategories', 'sortOrder' , 'search'])) {
             $this->resetPage();
         }
     }
@@ -26,6 +27,10 @@ class ProductFilter extends Component
         $query = Producto::query();
         if (!empty($this->selectedCategories)) {
             $query->whereIn('idCategoria', $this->selectedCategories);
+        }
+        // Filtrar por búsqueda
+        if (!empty($this->search)) {
+            $query->where('nombre', 'like', '%' . $this->search . '%');
         }
         switch ($this->sortOrder) {
             case 'oldest':
