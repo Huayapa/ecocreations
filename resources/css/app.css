@@ -150,6 +150,10 @@ input[type=number]::-webkit-outer-spin-button {
     animation: deletetop 2.5s ease-in;
     animation-fill-mode: forwards;
 }
+.delete-animation4 {
+    animation: deletetop 4s ease-in;
+    animation-fill-mode: forwards;
+}
 
 .animationcart {
     animation: moveBottom 0.5s ease-in-out;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pais;
 use App\Models\Producto;
 use App\Services\CarritoService;
 use Illuminate\Http\Request;
@@ -20,6 +21,10 @@ class CarritoController extends Controller {
     public function viewBoleta(){
         $carrito = $this->carritoService->obtenerProductos();
         $detalles = $this->carritoService->calcularTotales($carrito);
+        $paises = Pais::all();
+        if($paises) {
+            return view("boleta", compact( 'carrito', 'detalles', "paises"));
+        }
         return view('boleta', compact('carrito', 'detalles'));
     }
     public function agregar(Request $request)
