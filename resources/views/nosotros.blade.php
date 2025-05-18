@@ -1,10 +1,10 @@
-@extends('layouts.app')
-
+@extends("layouts.ecocreations")
+@section("titulo", "Nosotros")
 @section('content')
 <head>
-    <meta charset="UTF-8">
+    {{-- <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nosotros | Eco Creations</title>
+    <title>Nosotros | Eco Creations</title> --}}
     <style>
         * {
             box-sizing: border-box;
@@ -25,10 +25,11 @@
         .hero { 
             height: auto;
             background-color: #3b5d3b;
-            background-image: url('../../public/img/Nosotros.png');
+            background-image: url('{{ asset("img/Nosotros.png")}}');
             background-size: cover;
             background-position: center;
             padding: 60px 20px;
+            padding-top: 14rem;
             text-align: center;
             color: white;
         }
@@ -215,7 +216,7 @@
 
     <section class="eco-creations">
         <div class="logo-box">
-            <img src="../../public/img/ecocreations.png" alt="Eco Creations">
+            <img src="{{ asset('img/ecocreations.png') }}" alt="Eco Creations">
         </div>
         <div class="eco-text">
             <p>
@@ -237,23 +238,23 @@
         <h2>Nuestros Valores</h2>
         <div class="cards">
             <div class="card">
-                <img src="../../public/img/sostenible.png" alt="Sostenibilidad">
+                <img src="{{ asset("img/sostenible.png")}}" alt="Sostenibilidad">
                 <div class="card-title">🌱 Sostenibilidad</div>
             </div>
             <div class="card">
-                <img src="../../public/img/comercio.png" alt="Comercio justo">
+                <img src="{{ asset("img/comercio.png")}}" alt="Comercio justo">
                 <div class="card-title">🤝 Comercio justo</div>
             </div>
             <div class="card">
-                <img src="../../public/img/amor.png" alt="Amor por el planeta">
+                <img src="{{ asset("img/amor.png")}}" alt="Amor por el planeta">
                 <div class="card-title">🌍 Amor por el planeta</div>
             </div>
             <div class="card">
-                <img src="../../public/img/producto.png" alt="Sin tóxicos">
+                <img src="{{ asset("img/producto.png")}}" alt="Sin tóxicos">
                 <div class="card-title">🧴 Productos sin tóxicos</div>
             </div>
             <div class="card">
-                <img src="../../public/img/cero.png" alt="Cero plástico">
+                <img src="{{ asset("img/cero.png")}}" alt="Cero plástico">
                 <div class="card-title">🚫 Cero plástico</div>
             </div>
         </div>
@@ -263,17 +264,17 @@
         <h2>Nuestro Equipo</h2>
         <div class="cards">
             <div class="card">
-                <img src="../../public/img/gianfranco.png" alt="Gianfranco">
+                <img src="{{ asset("img/gianfranco.png")}}" alt="Gianfranco">
                 <div class="card-title">Gianfranco Hullica</div>
                 <small>Diseño y marketing</small>
             </div>
             <div class="card">
-                <img src="../../public/img/josue.png" alt="Jose">
+                <img src="{{ asset("img/josue.png")}}" alt="Jose">
                 <div class="card-title">Jose Huayapa</div>
                 <small>Programador</small>
             </div>
             <div class="card">
-                <img src="../../public/img/nada.png" alt="No hace nada">
+                <img src="{{ asset("img/nada.png")}}" alt="No hace nada">
                 <div class="card-title">"No hace nada"</div>
                 <small>...pero se ve bonito</small>
             </div>

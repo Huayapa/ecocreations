@@ -12,7 +12,14 @@ Route::get('/', [HomeController::class, 'index'])->name('inicio');
 // RUTA DE PRODUCTOS "TIENDA"
 Route::get('productos', [TiendaController::class, 'index'])->name('productos');
 
-
+//CONTACTO
+Route::get("contacto", function () {
+  return view("contacto");
+})->name("contacto");
+//NOSOTROS
+Route::get("nosotros", function () {
+  return view("nosotros");
+})->name("nosotros");
 // RUTA DE DETALLE DE PEDIDO
 Route::get('detalleproducto/{id}', [ProductoController::class, 'mostrar'])->name('detalleproducto');
 

@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends("layouts.ecocreations")
+@section("titulo", "Nosotros")
+@section("content")
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contacto - Eco Productos</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -23,6 +21,7 @@
       color: white;
       text-align: center;
       position: relative;
+      padding-top: 10rem
     }
 
     header::after {
@@ -197,3 +196,5 @@
 
 </body>
 </html>
+
+@endsection

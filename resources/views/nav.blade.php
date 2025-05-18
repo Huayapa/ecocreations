@@ -7,8 +7,8 @@
         <div class=" navtext-eco items-center hidden lg:flex">
             <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="{{ route("inicio") }}">Inicio</a>
             <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="{{ route("productos") }}">Productos</a>
-            <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="#">Contacto</a>
-            <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="#">Nosotros</a>
+            <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="{{ route("contacto") }}">Contacto</a>
+            <a class="px-[1rem] hover:underline hover:text-[var(--green-eco)] transition" href="{{ route("nosotros") }}">Nosotros</a>
         </div>
     </section>
     <div class="flex items-center gap-[1rem]">
@@ -27,8 +27,8 @@
         <section class="flex flex-col w-full text-[var(--dark-eco)]">
             <a class="px-[1rem] py-[0.5rem] hover:underline hover:text-[var(--green-eco)] transition text-end" href="{{ route("inicio") }}">Inicio</a>
             <a class="px-[1rem] py-[0.5rem] hover:underline hover:text-[var(--green-eco)] transition text-end" href="{{ route("productos") }}">Productos</a>
-            <a class="px-[1rem] py-[0.5rem] hover:underline hover:text-[var(--green-eco)] transition text-end" href="#">Contacto</a>
-            <a class="px-[1rem] py-[0.5rem] hover:underline hover:text-[var(--green-eco)] transition text-end" href="#">Nosotros</a>
+            <a class="px-[1rem] py-[0.5rem] hover:underline hover:text-[var(--green-eco)] transition text-end" href="{{ route("contacto") }}">Contacto</a>
+            <a class="px-[1rem] py-[0.5rem] hover:underline hover:text-[var(--green-eco)] transition text-end" href="{{ route("nosotros") }}">Nosotros</a>
         </section>
     <button class="w-full py-[0.5rem] bg-[var(--dark-eco)] text-white rounded-xl cursor-pointer mt-[1rem]">Iniciar Sesión</button>
     </nav>
