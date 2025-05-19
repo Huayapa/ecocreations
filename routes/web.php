@@ -35,3 +35,10 @@ Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar'])->name('
 Route::get('boleta', [CarritoController::class, 'viewBoleta'])->name('boleta');
 // !PEDIDOS
 Route::post('/pedidos', [PedidoController::class, 'agregar'])->name('pedidos.agregar');
+//login registro
+Route::get("login", function () {
+  return view("login");
+})->name("login");
+Route::get("registro", function () {
+  return view("register");
+})->name("registro");
