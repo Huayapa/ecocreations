@@ -55,7 +55,7 @@ body {
     margin-bottom: 20px;
 }
 
-.form-group input {
+.form-group input, .form-group select {
     width: 100%;
     padding: 12px;
     border: 1px solid #333;
@@ -64,7 +64,7 @@ body {
     color: #fff;
 }
 
-.form-group input::placeholder {
+.form-group input::placeholder, .form-group select::placeholder {
     color: #aaa;
 }
 

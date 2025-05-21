@@ -10,10 +10,6 @@
       <div class="login-form">
           <h2>Iniciar Sesión</h2>
           
-          <?php if(isset($error)): ?>
-              <div class="error-message"><?php echo $error; ?></div>
-          <?php endif; ?>
-          
           <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
               <div class="form-group">
                   <input type="text" name="usuario" placeholder="Usuario" required>
@@ -26,7 +22,7 @@
               </div>
               <button type="submit" class="btn-ingresar">Ingresar</button>
           </form>
-          <p class="register-link">¿No tienes una cuenta? <a href="{{ route("registro") }}">Crea tu cuenta Aquí</a></p>
+          <p class="register-link">¿No tienes una cuenta? <a href="{{ route("register.form") }}">Crea tu cuenta Aquí</a></p>
       </div>
       <div class="login-image">
           <img src="{{ asset('img/fondo.png')  }}" alt="ECO CREATIONS Store">
