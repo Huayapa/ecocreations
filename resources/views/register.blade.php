@@ -27,7 +27,7 @@
     </div>
 @endif
 
-<div class="h-screen  !mt-[10rem] !lg:mt-[14rem] flex w-full">
+<div class="h-screen  !mt-[10rem] !lg:mt-[14rem] flex w-full">  
     <div class="login-container h-fit w-full">
         <div class="login-form registro-form">
             <h2>Regístrate aquí</h2>

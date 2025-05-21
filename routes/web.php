@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PedidoController;
@@ -36,11 +37,13 @@ Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar'])->name('
 Route::get('boleta', [CarritoController::class, 'viewBoleta'])->name('boleta');
 // !PEDIDOS
 Route::post('/pedidos', [PedidoController::class, 'agregar'])->name('pedidos.agregar');
-//login registro
-Route::get("login", function () {
-  return view("login");
-})->name("login");
 
 //!REGISTRO
 Route::get('/register', [RegisterController::class, 'show'])->name('register.form');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
+
+
+//!LOGIN
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
