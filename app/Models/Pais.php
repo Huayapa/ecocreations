@@ -8,4 +8,5 @@ class Pais extends Model
 {
     protected $primaryKey = 'idPais';
     protected $table = 'pais';
+    public $timestamps = false;
 }

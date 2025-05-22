@@ -93,12 +93,21 @@
             </label>
             <label class="text-xl flex flex-col">Calle
               <input type="text" name="calle" id="" class="bg-white text-black py-[0.6rem] rounded-lg my-[0.8rem] px-[0.5rem]" value="{{ $direccion->calle ?? ""}}"/>
+              @error('calle')
+                <div class="text-red-500">{{ $message }}</div>
+              @enderror
             </label>
             <label class="text-xl flex flex-col">Ciudad
               <input type="text" name="ciudad" id="" class="bg-white text-black py-[0.6rem] rounded-lg my-[0.8rem] px-[0.5rem]" value="{{ $direccion->ciudad ?? ""}}"/>
+              @error('ciudad')
+                <div class="text-red-500">{{ $message }}</div>
+              @enderror
             </label>
             <label class="text-xl flex flex-col">Código Postal
-              <input type="text" name="ciudad" id="" class="bg-white text-black py-[0.6rem] rounded-lg my-[0.8rem] px-[0.5rem]" value="{{ $direccion->codigoPostal?? "" }}"/>
+              <input type="text" name="codigopostal" id="" class="bg-white text-black py-[0.6rem] rounded-lg my-[0.8rem] px-[0.5rem]" value="{{ $direccion->codigoPostal?? "" }}"/>
+              @error('codigopostal')
+                <div class="text-red-500">{{ $message }}</div>
+              @enderror
             </label>
         </section>
         {{-- detalles --}}

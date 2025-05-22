@@ -9,6 +9,7 @@ use App\Models\Pais;
 use App\Models\Usuario;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
@@ -35,27 +36,29 @@ class RegisterController extends Controller
             'pais' => 'required|int'
         ]);
         try {
-            // Crear usuario
-            $user = Usuario::create([
-                'nombre' => $request->nombre,
-                'correo' => $request->correo,
-                'contra' => Hash::make($request->contrasena),
-                'tipo' => 'Cliente',
-            ]);
-            //Crear la direccion
-            $direccion = Direccion::create([
-            'calle' => $request->calle,
-            'ciudad' => $request->ciudad,
-            'codigoPostal' => $request->codigopostal,
-            'idPais' => $request->pais
-            ]);
-            // Crear cliente vinculado al usuario
-            Cliente::create([
-                'telefono' => $request->telefono,
-                'dni' => $request->dni,
-                'idUsuario' => $user->idUsuario,
-                'idDireccion' => $direccion->idDireccion, // o el valor real si lo tienes
-            ]);
+            DB::transaction(function () use ($request) {
+                // Crear usuario
+                $user = Usuario::create([
+                    'nombre' => $request->nombre,
+                    'correo' => $request->correo,
+                    'contra' => Hash::make($request->contrasena),
+                    'tipo' => 'Cliente',
+                ]);
+                //Crear la direccion
+                $direccion = Direccion::create([
+                'calle' => $request->calle,
+                'ciudad' => $request->ciudad,
+                'codigoPostal' => $request->codigopostal,
+                'idPais' => $request->pais
+                ]);
+                // Crear cliente vinculado al usuario
+                Cliente::create([
+                    'telefono' => $request->telefono,
+                    'dni' => $request->dni,
+                    'idUsuario' => $user->idUsuario,
+                    'idDireccion' => $direccion->idDireccion, // o el valor real si lo tienes
+                ]);
+            });
             return redirect()->route('register.form')->with('successcreate', 'Usuario registrado con éxito.');
         } catch (Exception $e) {
             return redirect()->route('register.form')->with('errorcreate', 'Ocurrió un error al registrar. Intenta nuevamente.');
