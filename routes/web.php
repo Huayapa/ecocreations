@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\HomeController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TiendaController;
+use App\Http\Middleware\EsAdministrador;
 use Illuminate\Support\Facades\Route;
 
 // RUTA DE INICIO
@@ -47,3 +49,8 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+//!DASHBOARD
+Route::middleware(['auth', EsAdministrador::class])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.inicio');
+});

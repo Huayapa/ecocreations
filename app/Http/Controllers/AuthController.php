@@ -30,9 +30,12 @@ class AuthController extends Controller
         if ($usuario && password_verify($request->contrasena, $usuario->contra)) {
             // Autenticar al usuario
             Auth::login($usuario);
-
-            // Redirigir al usuario
-            return redirect()->route('inicio'); 
+            if ($usuario->tipo === 'Administrador') {
+                return redirect()->route('admin.inicio');
+            } else {
+                // Redirigir al usuario
+                return redirect()->route('inicio'); 
+            }
         }
 
         // Si las credenciales son incorrectas
