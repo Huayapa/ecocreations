@@ -12,6 +12,17 @@
       <div class="ms-3  font-normal h-full text-center mt-[1rem] text-3xl">{{ session(key: 'boletasuccess') }}</div>
     </div>
 @endif
+@if(session('boletaerror'))
+    <div id="toast-danger" class="flex delete-animation4 flex-col fixed  top-[0] left-[50%] translate-x-[-50%] z-70 items-center max-w-[30rem] min-h-[20rem] w-full border-2 border-[var(--border-eco)] p-4 mb-4 text-white bg-[var(--dark-eco)] rounded-lg shadow-sm" role="alert">
+      <div class="inline-flex items-center justify-center shrink-0 w-[5rem] h-[5rem] p-2 text-red-500 bg-red-100 rounded-lg">
+        <svg class="w-[5rem] h-[5rem]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
+        </svg>
+          <span class="sr-only">Ocurrio un problema</span>
+      </div>
+      <div class="ms-3  font-normal h-full text-center mt-[1rem] text-3xl">{{ session(key: 'boletaerror') }}</div>
+    </div>
+@endif
 <section class="w-full px-[4vw] md:px-[10vw] py-[10rem]  sm:py-[12rem]">
   <h1 class="text-2xl md:text-4xl my-[1rem]">Resumen Pedido</h1>
   <form action="{{ route('pedidos.agregar') }}" method="POST">
@@ -68,10 +79,12 @@
           <h2 class="text-3xl mb-[0.5rem]">Finalizar Compra:</h2>
           {{-- DATOS DE FORMULARIO --}}
             <label class="text-xl flex flex-col">País
-              <select name="pais" id="" class="bg-white text-black py-[0.6rem] rounded-lg my-[0.8rem] px-[0.5rem]">
+              <select name="pais" id="" class="bg-white text-black py-[0.6rem] rounded-lg my-[0.8rem] px-[0.5rem]" >
                 @if(isset($paises)) 
                   @foreach ($paises as $pais)
-                  <option value="{{ $pais->idPais }}">{{$pais->nombre}}</option>
+                  <option value="{{ $pais->idPais }} "
+                    {{ (isset($direccion) && $direccion->idPais == $pais->idPais) ? 'selected' : '' }}
+                    >{{$pais->nombre}}</option>
                   @endforeach
                 @else
                 <option value="error">Pais no encontrados</option>
@@ -79,13 +92,13 @@
               </select>
             </label>
             <label class="text-xl flex flex-col">Calle
-              <input type="text" name="calle" id="" class="bg-white text-black py-[0.6rem] rounded-lg my-[0.8rem] px-[0.5rem]" />
+              <input type="text" name="calle" id="" class="bg-white text-black py-[0.6rem] rounded-lg my-[0.8rem] px-[0.5rem]" value="{{ $direccion->calle ?? ""}}"/>
             </label>
             <label class="text-xl flex flex-col">Ciudad
-              <input type="text" name="ciudad" id="" class="bg-white text-black py-[0.6rem] rounded-lg my-[0.8rem] px-[0.5rem]" />
+              <input type="text" name="ciudad" id="" class="bg-white text-black py-[0.6rem] rounded-lg my-[0.8rem] px-[0.5rem]" value="{{ $direccion->ciudad ?? ""}}"/>
             </label>
             <label class="text-xl flex flex-col">Código Postal
-              <input type="text" name="ciudad" id="" class="bg-white text-black py-[0.6rem] rounded-lg my-[0.8rem] px-[0.5rem]" />
+              <input type="text" name="ciudad" id="" class="bg-white text-black py-[0.6rem] rounded-lg my-[0.8rem] px-[0.5rem]" value="{{ $direccion->codigoPostal?? "" }}"/>
             </label>
         </section>
         {{-- detalles --}}

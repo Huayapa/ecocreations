@@ -7,6 +7,7 @@ use App\Models\Pais;
 use App\Models\Producto;
 use App\Services\CarritoService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CarritoController extends Controller {   
     protected CarritoService $carritoService;
@@ -22,10 +23,14 @@ class CarritoController extends Controller {
         $carrito = $this->carritoService->obtenerProductos();
         $detalles = $this->carritoService->calcularTotales($carrito);
         $paises = Pais::all();
+
+        // Mostrar datos de cuenta "direccion"
+        $user = Auth::user();
+        $direccion = $user->cliente->direccion ?? null;
         if($paises) {
-            return view("boleta", compact( 'carrito', 'detalles', "paises"));
+            return view("boleta", compact( 'carrito', 'detalles', "paises", 'user', 'direccion'));
         }
-        return view('boleta', compact('carrito', 'detalles'));
+        return view('boleta', compact('carrito', 'detalles', 'user', 'direccion'));
     }
     public function agregar(Request $request)
     {
