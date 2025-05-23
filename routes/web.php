@@ -39,7 +39,7 @@ Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar'])->name('
 Route::get('boleta', [CarritoController::class, 'viewBoleta'])->name('boleta');
 // !PEDIDOS
 Route::post('/pedidos', [PedidoController::class, 'agregar'])->name('pedidos.agregar');
-Route::post('/pedidos', [PedidoController::class, 'actualizarEstado'])->name('pedido.actualizar');
+Route::post('/pedidos/actualizar', [PedidoController::class, 'actualizarEstado'])->name('pedido.actualizar');
 
 //!REGISTRO
 Route::get('/register', [RegisterController::class, 'show'])->name('register.form');
