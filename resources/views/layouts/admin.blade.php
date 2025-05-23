@@ -21,7 +21,7 @@
             </style>
         @endif
     </head>
-    <body class="min-h-screen grid grid-cols-[5rem_1fr] md:grid-cols-[20rem_1fr]">
+    <body class="min-h-screen grid grid-cols-[5rem_calc(100%_-_5rem)] lg:grid-cols-[20rem_1fr]">
         @if(session(key: 'success')) 
             <div id="messageadd" class="flex fixed delete-animation top-[1rem] left-[1rem] z-70 items-center w-fit max-w-xs p-4 mb-4 text-white bg-[var(--dark-eco)] rounded-lg shadow-sm" role="alert">
                 <div class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg">

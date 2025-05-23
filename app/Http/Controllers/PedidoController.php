@@ -114,4 +114,19 @@ class PedidoController extends Controller
             return redirect()->back()->with('boletaerror', 'El pedido no se pudo registrar.'. $e);
         }
     }
+
+    public function actualizarEstado(Request $request){
+        try {
+            $request->validate([
+                'idPedido' => 'required|exists:pedido,idPedido',
+                'estado' => 'required|in:pendiente,procesando,enviado,cancelado,devuelto',
+            ]);
+            $pedido = Pedido::find($request->idPedido);
+            $pedido->estado = $request->estado;
+            $pedido->save();
+            return redirect()->back()->with('success', 'Estado actualizado correctamente.');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Hubo un problema al actualizar el estado.');
+        }
+    }
 }

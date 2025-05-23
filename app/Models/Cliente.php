@@ -13,8 +13,12 @@ class Cliente extends Model
     protected $fillable = ['telefono', 'dni', 'idUsuario', 'idDireccion'];
     // Busca en la tabla Usuarios la fila cuyo idUsuario coincida con el id.
     public function usuario(){
-        return $this->belongsTo(User::class, 'idUsuario');
+        return $this->belongsTo(Usuario::class, 'idUsuario');
     }
+    // public function usuariotable(){
+    //     return $this->belongsTo(Usuario::class, 'idUsuario');
+    // }
+
     public function direccion(){
         return $this->belongsTo(Direccion::class, 'idDireccion', 'idDireccion');
     }
