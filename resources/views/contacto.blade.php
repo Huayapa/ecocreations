@@ -188,10 +188,15 @@
     <p>¿TE GUSTO LO QUE VISTE?</p>
     <h2>PUEDES CONSULTAR AQUÍ</h2>
     <br>
-    <form>
-      <input type="email" placeholder="Escribe tu correo" required />
-      <button type="submit">ENVIAR</button>
-    </form>
+<form
+  action="https://formspree.io/f/mqaqvezn"
+  method="POST"
+>
+    <input type="email"name="correo"placeholder="Escribe tu correo"required/>
+  <button type="submit">ENVIAR</button>
+</form>
+
+
   </section>
 
 </body>
