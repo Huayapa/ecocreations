@@ -11,6 +11,7 @@ use App\Http\Controllers\TiendaController;
 use App\Http\Middleware\EsAdministrador;
 use Illuminate\Support\Facades\Route;
 
+
 // RUTA DE INICIO
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
 // RUTA DE PRODUCTOS "TIENDA"
@@ -55,3 +56,22 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth', EsAdministrador::class])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.inicio');
 });
+
+
+//!GMAIL
+
+use App\Http\Controllers\CorreoController;
+
+Route::post('/enviar-correo', [CorreoController::class, 'enviar'])->name('enviar.correo');
+
+use Illuminate\Support\Facades\Mail;
+
+Route::get('/probar-correo', function () {
+    Mail::raw('¡Este es un correo de prueba!', function ($message) {
+        $message->to('gianfrancohj2@gmail.com')
+                ->subject('Prueba directa de correo');
+    });
+
+    return 'Correo enviado.';
+});
+
