@@ -28,33 +28,37 @@
             <th scope="col" class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md">Fecha Realizado</th>
             <th scope="col" class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md">Total Productos</th>
             <th scope="col" class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md">Total Precio "sin igv"</th>
+            <th scope="col" class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md">Impuesto</th>
+            <th scope="col" class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md">Total</th>
             <th scope="col" class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md"></th>
           </tr>
         </thead>
         <tbody>
-          @if (count($pedidos) == 0)
+          @if (count($ventastotal) == 0)
             <tr>
               <td colspan="7" class="text-center text-white">No hay pedidos realizados</td>
             </tr>
           @else
-            @foreach ($pedidos as $pedido)
+            @foreach ($ventastotal as $venta)
               <tr class=" border-b bg-[var(--dark-eco)]/90 border-[var(--dark-eco)]/90 ">
-                <td class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md lg:text-lg font-medium  whitespace-nowrap text-white">{{ $pedido->idPedido ?? ""}}</td>
-                <td class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md lg:text-lg text-white">{{ $pedido->cliente->usuario->nombre ?? ""}}</td>
-                <td class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md lg:text-lg text-white">{{ $pedido->cliente->dni ?? ""}}</td>
-                <td class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md lg:text-lg text-white">{{ $pedido->fechaPedido?? ""}}</td>
-                <td class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md lg:text-lg text-white">{{ $pedido->totalCantidad ?? ""}}</td>
-                <td class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md lg:text-lg text-white">{{ $pedido->totalPrecio ?? ""}}</td>
+                <td class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md lg:text-lg font-medium  whitespace-nowrap text-white">{{ $venta->idPedido ?? ""}}</td>
+                <td class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md lg:text-lg text-white">{{ $venta->pedido->cliente->usuario->nombre ?? ""}}</td>
+                <td class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md lg:text-lg text-white">{{ $venta->pedido->cliente->dni ?? ""}}</td>
+                <td class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md lg:text-lg text-white">{{ $venta->pedido->fechaPedido?? ""}}</td>
+                <td class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md lg:text-lg text-white">{{ $venta->pedido->totalCantidad ?? ""}}</td>
+                <td class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md lg:text-lg text-white">{{ $venta->pedido->totalPrecio ?? ""}}</td>
+                <td class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md lg:text-lg text-white">{{ $venta->igv ?? ""}}</td>
+                <td class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md lg:text-lg text-white">{{ $venta->total ?? ""}}</td>
                 <td class="px-2 md:px-6 py-1 md:py-3 text-[0.6rem] md:text-md lg:text-lg text-white">
                   <form action="{{ route('pedido.actualizar') }}" method="post" class="flex flex-col md:flex-row items-center gap-2">
                     @csrf
-                    <input type="hidden" name="idPedido" value="{{ $pedido->idPedido }}">
+                    <input type="hidden" name="idPedido" value="{{ $venta->pedido->idPedido }}">
                     <select name="estado" id="estado" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                      <option value="pendiente" {{ $pedido->estado == "pendiente" ? 'selected' : '' }}>Pendiente</option>
-                      <option value="procesando" {{ $pedido->estado == "procesando" ? 'selected' : '' }}>En Proceso</option>
-                      <option value="enviado" {{ $pedido->estado == "enviado" ? 'selected' : '' }}>Entregado</option>
-                      <option value="cancelado" {{ $pedido->estado == "cancelado" ? 'selected' : '' }}>Cancelado</option>
-                      <option value="devuelto" {{ $pedido->estado == "devuelto" ? 'selected' : '' }}>Devuelto</option>
+                      <option value="pendiente" {{ $venta->pedido->estado == "pendiente" ? 'selected' : '' }}>Pendiente</option>
+                      <option value="procesando" {{ $venta->pedido->estado == "procesando" ? 'selected' : '' }}>En Proceso</option>
+                      <option value="enviado" {{ $venta->pedido->estado == "enviado" ? 'selected' : '' }}>Entregado</option>
+                      <option value="cancelado" {{ $venta->pedido->estado == "cancelado" ? 'selected' : '' }}>Cancelado</option>
+                      <option value="devuelto" {{ $venta->pedido->estado == "devuelto" ? 'selected' : '' }}>Devuelto</option>
                     </select>
                     <button type="submit" class="bg-white hover:bg-[var(--green-eco)] hover:text-white text-black font-bold py-2 px-4 rounded">Actualizar</button>
                   </form>

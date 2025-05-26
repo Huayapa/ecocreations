@@ -17,4 +17,7 @@ class Venta extends Model
         'igv',
         'total',
     ];
+    public function pedido(){
+        return $this->belongsTo(Pedido::class, 'idPedido'); //Relacion con cliente
+    }
 }

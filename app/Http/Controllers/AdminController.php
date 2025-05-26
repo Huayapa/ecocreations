@@ -17,13 +17,14 @@ class AdminController extends Controller
     public function index() {
         // Datos de usuarios
         $user = Auth::user();
-        // $pedidos = 5;
         // Datos total Ventas
         $ventas = Venta::sum("total");
         // Clientes registrados
         $cliente = Cliente::count("idCliente");
         // Productos con poco stock
         $productominstock = Producto::orderBy('stock', 'asc')->first();
+        // Datos de ventas
+        $ventastotal = Venta::all();
         // Datos de pedidos
         $pedidos = Pedido::all();
         return view('admin.inicio', compact( 
@@ -31,7 +32,8 @@ class AdminController extends Controller
             'pedidos',
             "ventas",
             "cliente",
-            "productominstock"
+            "productominstock",
+            "ventastotal"
         ));
     }
 }
